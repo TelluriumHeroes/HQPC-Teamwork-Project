@@ -1,5 +1,0 @@
-C:\Users\Matthew\Desktop\17. High-Quality-Code-Team-Work-Projects\Labyrinth\Labyrinth-1\bin\Debug\Labyrinth.exe
-C:\Users\Matthew\Desktop\17. High-Quality-Code-Team-Work-Projects\Labyrinth\Labyrinth-1\bin\Debug\Labyrinth.pdb
-C:\Users\Matthew\Desktop\17. High-Quality-Code-Team-Work-Projects\Labyrinth\Labyrinth-1\obj\Debug\KPK..project.csprojResolveAssemblyReference.cache
-C:\Users\Matthew\Desktop\17. High-Quality-Code-Team-Work-Projects\Labyrinth\Labyrinth-1\obj\Debug\Labyrinth.exe
-C:\Users\Matthew\Desktop\17. High-Quality-Code-Team-Work-Projects\Labyrinth\Labyrinth-1\obj\Debug\Labyrinth.pdb
