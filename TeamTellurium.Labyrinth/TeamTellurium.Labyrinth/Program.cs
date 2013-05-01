@@ -6,7 +6,9 @@ using System.IO;
 
 namespace TeamTellurium.Labyrinth
 {
-    enum Direction { Blank = -1, Left, Up, Right, Down };
+    enum Direction { 
+        Blank = -1, Left, Up, Right, Down 
+    };
 
     class Message
     {
