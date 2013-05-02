@@ -107,10 +107,9 @@ namespace Labyrinth
 
     class Playfield
     {
-        int[,] labyrinth = new int[7, 7];
+        int[,] labyrinth = 
+                new int[7, 7];
         Position player;
-
-
 
 
         public bool isWinning()
