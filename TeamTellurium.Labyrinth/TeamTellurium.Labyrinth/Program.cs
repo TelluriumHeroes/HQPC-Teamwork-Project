@@ -9,7 +9,7 @@ namespace Labyrinth
 
     class Message
     {
-        public void invalid()
+        public void Invalid()
         {
             Console.WriteLine("* Invalid move!");
         }
@@ -343,7 +343,7 @@ namespace Labyrinth
                         break;
                     case "L":
 
-                        if (!playfield.move(Direction.Left)) message.invalid();
+                        if (!playfield.move(Direction.Left)) message.Invalid();
                         else
                         {
                             moves++;
@@ -353,7 +353,7 @@ namespace Labyrinth
                         break;
                     case "U":
 
-                        if (!playfield.move(Direction.Up)) message.invalid();
+                        if (!playfield.move(Direction.Up)) message.Invalid();
                         else
                         {
                             moves++;
@@ -363,7 +363,7 @@ namespace Labyrinth
                         break;
                     case "R":
 
-                        if (!playfield.move(Direction.Right)) message.invalid();
+                        if (!playfield.move(Direction.Right)) message.Invalid();
                         else
                         {
                             moves++;
@@ -373,7 +373,7 @@ namespace Labyrinth
                         break;
                     case "D":
 
-                        if (!playfield.move(Direction.Down)) message.invalid();
+                        if (!playfield.move(Direction.Down)) message.Invalid();
                         else
                         {
                             moves++;
@@ -383,7 +383,7 @@ namespace Labyrinth
                         break;
                     default:
                         {
-                            message.invalid(); 
+                            message.Invalid(); 
                             break;
                         }
 
