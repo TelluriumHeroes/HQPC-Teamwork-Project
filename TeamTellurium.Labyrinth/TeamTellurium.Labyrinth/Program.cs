@@ -10,11 +10,11 @@ namespace TeamTellurium.Labyrinth
 
     class Message
     {
-        public void invalid()
+        public void Invalid()
         {
             Console.WriteLine("* Invalid move!");
         }
-        public void move()
+        public void Move()
         {
             Console.Write("Enter your move (L=left, R=right, U=up, D=down): ");
         }
@@ -23,11 +23,8 @@ namespace TeamTellurium.Labyrinth
         {
             Console.WriteLine("Welcome to \"Labyrinth\" game. Please try to escape. Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
         }
-        public void nl()
+        public void NewLine()
         {
-
-
-
             Console.WriteLine();
         }
         public void win(int moves)
@@ -320,7 +317,7 @@ namespace TeamTellurium.Labyrinth
         {
             message.intro();
             playfield.reset();
-            message.nl();
+            message.NewLine();
             playfield.print();
             moves = 0;
         }
@@ -331,7 +328,7 @@ namespace TeamTellurium.Labyrinth
             newGame();
             scores=new Scoreboard();
             String input = "";
-            message.move();
+            message.Move();
             while ((input = Console.ReadLine()) != "exit")
             {
                 switch (input)
@@ -344,7 +341,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "L":
 
-                        if (!playfield.move(Direction.Left)) message.invalid();
+                        if (!playfield.move(Direction.Left)) message.Invalid();
                         else
                         {
                             moves++;
@@ -354,7 +351,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "U":
 
-                        if (!playfield.move(Direction.Up)) message.invalid();
+                        if (!playfield.move(Direction.Up)) message.Invalid();
                         else
                         {
                             moves++;
@@ -364,7 +361,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "R":
 
-                        if (!playfield.move(Direction.Right)) message.invalid();
+                        if (!playfield.move(Direction.Right)) message.Invalid();
                         else
                         {
                             moves++;
@@ -374,7 +371,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "D":
 
-                        if (!playfield.move(Direction.Down)) message.invalid();
+                        if (!playfield.move(Direction.Down)) message.Invalid();
                         else
                         {
                             moves++;
@@ -384,7 +381,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     default:
                         {
-                            message.invalid(); 
+                            message.Invalid(); 
                             break;
                         }
 
@@ -401,10 +398,10 @@ namespace TeamTellurium.Labyrinth
                     {                        
                        
                     };
-                    message.nl();
+                    message.NewLine();
                     newGame();
                 }
-                message.move();
+                message.Move();
             }
             Console.Write("Good Bye!");
             Console.ReadKey();
