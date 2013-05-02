@@ -31,7 +31,7 @@ namespace Labyrinth
         }
         public void win(int moves)
         {
-            Console.Write("Congratulations! You escaped in {0} moves.\nPlease enter your name for the top scoreboard: ", moves);
+            Console.Write("Congratulations! You escaped in {0} moves!\nPlease enter your name for the top scoreboard: ", moves);
 
 
 
