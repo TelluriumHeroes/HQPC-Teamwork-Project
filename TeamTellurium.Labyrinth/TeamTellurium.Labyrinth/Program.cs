@@ -104,6 +104,7 @@ namespace TeamTellurium.Labyrinth
         }
     }
 
+ 
     public class Program
     {
         static Playfield playfield = new Playfield();
@@ -116,7 +117,7 @@ namespace TeamTellurium.Labyrinth
             message.intro();
             playfield.InitializeField();
             message.nl();
-            Render.RenderField(playfield.LabyrinthGrid, playfield.Player);
+            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
             moves = 0;
         }
 
@@ -139,41 +140,41 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "L":
 
-                        if (!playfield.TryMove(Direction.Left)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Left)) message.Invalid();
                         else
                         {
                             moves++;
-                            Render.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
                     case "U":
 
-                        if (!playfield.TryMove(Direction.Up)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Up)) message.Invalid();
                         else
                         {
                             moves++;
-                            Render.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
                     case "R":
 
-                        if (!playfield.TryMove(Direction.Right)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Right)) message.Invalid();
                         else
                         {
                             moves++;
-                            Render.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
                     case "D":
 
-                        if (!playfield.TryMove(Direction.Down)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Down)) message.Invalid();
                         else
                         {
                             moves++;
-                            Render.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
