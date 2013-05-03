@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MovesChecker.cs" />
-    <Compile Include="Render.cs" />
+    <Compile Include="Renderer.cs" />
     <Compile Include="Playfield.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
