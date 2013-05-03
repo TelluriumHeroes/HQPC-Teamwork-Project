@@ -21,52 +21,9 @@ namespace TeamTellurium.Labyrinth
             this.Player = new Position();
         }
 
-        //Here//
         public bool IsWinning()
         {
             return Player.isWinning();
-        }
-
-        public bool TryMove(Direction direction)
-        {
-            if (IsValidMove(Player, direction))
-            {
-                Player.move(direction);
-            }
-            else
-            {
-                return false;
-            }
-            return true;
-        }
-
-        bool IsValidPosition(Position currentPosition)
-        {
-            return LabyrinthGrid[currentPosition.x, currentPosition.y] == 0 && currentPosition.isValidPosition();
-        }
-
-        bool IsValidMove(Position currentPosition, Direction nextDirection)
-        {
-            if (currentPosition.isWinning())
-            {
-                return false;
-            }
-
-            Position newPosition = new Position(currentPosition.x, currentPosition.y);
-
-            newPosition.move(nextDirection);
-
-            return IsValidPosition(newPosition);
-        }
-
-        public bool IsBlankMove(Position currentPosition, Direction nextDirection)
-        {
-            Position newPosition = new Position(currentPosition.x, currentPosition.y);
-            newPosition.move(nextDirection);
-
-            bool isBlank = (this.LabyrinthGrid[newPosition.x, newPosition.y] == -1);
-
-            return isBlank;
         }
 
         #region GameFieldStartInitValues
@@ -129,7 +86,7 @@ namespace TeamTellurium.Labyrinth
                     int randomNumber = randomNumberGenerator.Next(-1, 4);
                     blankDirection = (Direction)(randomNumber);
 
-                } while (!IsBlankMove(currentPosition, blankDirection));
+                } while (!MovesChecker.IsBlankMove(this.LabyrinthGrid, currentPosition, blankDirection));
 
                 currentPosition.move(blankDirection);
 
@@ -144,8 +101,6 @@ namespace TeamTellurium.Labyrinth
             int startRow = 3;
             Console.SetCursorPosition(0, startRow);
         }
-
-
 
         public void ResetField()
         {

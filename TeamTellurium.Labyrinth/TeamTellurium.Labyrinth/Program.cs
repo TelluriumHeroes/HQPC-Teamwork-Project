@@ -133,7 +133,7 @@ namespace TeamTellurium.Labyrinth
             fileReader.Close();
         }
         
-        public void add(string name, int score)
+        public void AddPoints(string name, int score)
         {
             create(); 
             
@@ -149,6 +149,7 @@ namespace TeamTellurium.Labyrinth
                 scores[index] = Int32.Parse(nameAndScore[1]);
                 names[index++] = nameAndScore[0];
             }
+
             if (index < 5)
             {
                 scores[index] = score;
@@ -162,16 +163,19 @@ namespace TeamTellurium.Labyrinth
             }
             if (index == 5) index = 4;
             for (int i = 0; i <= index-1; i++)
-            for(int j=i+1;j<=index;j++)
-                if (scores[i] > scores[j])
+                for (int j = i + 1; j <= index; j++)
                 {
-                    int swapValue = scores[i];
-                    scores[i] = scores[j];
-                    scores[j] = swapValue;
-                    string swapValueString = names[i];
-                    names[i] = names[j];
-                    names[j] = swapValueString;
+                    if (scores[i] > scores[j])
+                    {
+                        int swapValue = scores[i];
+                        scores[i] = scores[j];
+                        scores[j] = swapValue;
+                        string swapValueString = names[i];
+                        names[i] = names[j];
+                        names[j] = swapValueString;
+                    }
                 }
+
             fileReader.Close();
             StreamWriter fileWriter = file.CreateText();
             for(int i=0;i<=index;i++)
@@ -215,7 +219,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "L":
 
-                        if (!playfield.TryMove(Direction.Left)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Left)) message.Invalid();
                         else
                         {
                             moves++;
@@ -225,7 +229,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "U":
 
-                        if (!playfield.TryMove(Direction.Up)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Up)) message.Invalid();
                         else
                         {
                             moves++;
@@ -235,7 +239,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "R":
 
-                        if (!playfield.TryMove(Direction.Right)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Right)) message.Invalid();
                         else
                         {
                             moves++;
@@ -245,7 +249,7 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "D":
 
-                        if (!playfield.TryMove(Direction.Down)) message.Invalid();
+                        if (!MovesChecker.TryMove(playfield, Direction.Down)) message.Invalid();
                         else
                         {
                             moves++;
@@ -270,7 +274,7 @@ namespace TeamTellurium.Labyrinth
                     string name = Console.ReadLine();
                     try
                     {
-                        scores.add(name, moves);
+                        scores.AddPoints(name, moves);
                     }
                     finally
                     {
