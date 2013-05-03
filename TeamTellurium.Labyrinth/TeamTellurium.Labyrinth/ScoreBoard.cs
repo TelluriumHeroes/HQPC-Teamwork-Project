@@ -4,18 +4,21 @@ using System.Linq;
 
 namespace TeamTellurium.Labyrinth
 {
-    public class Scoreboard
+    public class ScoreBoard
     {
-        void create()
+        private const string SCOREBOARD_PATH = "scoreboard.txt";
+
+        public void CreateScoreboard()
         {
-            FileInfo file = new FileInfo("scoreboard");
-            FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.Read);
+            FileInfo file = new FileInfo(SCOREBOARD_PATH);
+            FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite);
             stream.Close();
         }
-        public void pokazvane()
+
+        public void ShowScoreboard()
         {
-            create();
-            FileInfo file = new FileInfo("scoreboard");
+            CreateScoreboard();
+            FileInfo file = new FileInfo(SCOREBOARD_PATH);
             StreamReader fileReader = file.OpenText();
             string line = null;
             bool isEmpty = true;
@@ -33,9 +36,9 @@ namespace TeamTellurium.Labyrinth
 
         public void add(string name, int score)
         {
-            create();
+            CreateScoreboard();
 
-            FileInfo file = new FileInfo("scoreboard");
+            FileInfo file = new FileInfo(SCOREBOARD_PATH);
             StreamReader fileReader = file.OpenText();
             String line = null;
             int index = 0;

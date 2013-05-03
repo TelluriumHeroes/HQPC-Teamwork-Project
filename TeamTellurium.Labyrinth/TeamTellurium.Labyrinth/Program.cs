@@ -108,7 +108,7 @@ namespace TeamTellurium.Labyrinth
     {
         static Playfield playfield = new Playfield();
         static Message message = new Message();
-        static Scoreboard scores;
+        static ScoreBoard scores;
         static int moves = 0;
 
         static void newGame()
@@ -124,7 +124,7 @@ namespace TeamTellurium.Labyrinth
         {
 
             newGame();
-            scores=new Scoreboard();
+            scores=new ScoreBoard();
             String input = "";
             message.move();
             while ((input = Console.ReadLine()) != "exit")
@@ -132,7 +132,7 @@ namespace TeamTellurium.Labyrinth
                 switch (input)
                 {
                     case "top":
-                        scores.pokazvane();
+                        scores.ShowScoreboard();
                         break;
                     case "restart":
                         newGame();
