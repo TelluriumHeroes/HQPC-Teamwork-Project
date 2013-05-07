@@ -36,7 +36,7 @@ namespace TeamTellurium.Labyrinth
                     //Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
                 }
 
-                if (scoreboardResult == string.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
+                if (scoreboardResult.ToString() == String.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
                 {
                     scoreboardResult.AppendFormat("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                     //Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
@@ -49,7 +49,25 @@ namespace TeamTellurium.Labyrinth
         private FileInfo OpenScoreboardFile()
         {
             FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH);
+            if (!scoreBoardFile.Exists)
+            {
+                CreateScoreTextFile();
+            }
             return scoreBoardFile;
+        }
+       
+        private void CreateScoreTextFile()
+        {
+            string directory = Directory.GetCurrentDirectory();
+                  
+            for (int index = 0; index < 2; index++)
+            {
+                directory = directory.Substring(0, directory.LastIndexOf(@"\"));
+            }
+            string fileName = SCOREBOARD_PATH.Substring(SCOREBOARD_PATH.LastIndexOf("/") + 1);
+            string filePath = directory + @"\" + fileName;
+
+            using (File.Create(filePath)) { }
         }
 
         public void add(string name, int score)

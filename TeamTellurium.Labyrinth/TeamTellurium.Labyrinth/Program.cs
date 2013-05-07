@@ -133,7 +133,8 @@ namespace TeamTellurium.Labyrinth
                 switch (input)
                 {
                     case "top":
-                        scores.ShowScoreboard();
+                        //scores.ShowScoreboard();
+                        Renderer.RenderScoreboard(scores.ShowScoreboard().ToString());
                         break;
                     case "restart":
                         newGame();
