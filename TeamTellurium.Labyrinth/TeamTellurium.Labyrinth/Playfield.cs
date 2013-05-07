@@ -19,6 +19,11 @@ namespace TeamTellurium.Labyrinth
         {
             this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
             this.Player = new Position();
+            
+            //Remove later - !URGENT
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public bool IsWinning()
