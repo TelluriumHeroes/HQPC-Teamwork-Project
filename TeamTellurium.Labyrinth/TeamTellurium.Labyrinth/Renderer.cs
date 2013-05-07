@@ -7,37 +7,49 @@ using System.Threading.Tasks;
 namespace TeamTellurium.Labyrinth
 {
     public static class Renderer
-    {
-        public static void RenderField(int[,] playField, Position Player)
+    {  
+        public static void RenderField(Playfield playfield)
         {
-            int rows = playField.GetLength(0);
-            int cols = playField.GetLength(1);
+            int[,] labyrinthGrid = playfield.LabyrinthGrid;
+            Position player = playfield.Player;
+
+            int rows = labyrinthGrid.GetLength(0);
+            int cols = labyrinthGrid.GetLength(1);
+
+            StringBuilder fieldAsString = new StringBuilder();
 
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (Player.x == col && Player.y == row)
+                    if (player.x == col && player.y == row)
                     {
-                        Console.Write("*");
+                        fieldAsString.Append("*");
                     }
                     else
                     {
-                        if (playField[col, row] == 0)
+                        if (labyrinthGrid[col, row] == 0)
                         {
-                            Console.Write("-");
+                            fieldAsString.Append("-");
                         }
                         else
                         {
-                            if (playField[col, row] == 1)
+                            if (labyrinthGrid[col, row] == 1)
                             {
-                                Console.Write("X");
+                                fieldAsString.Append("X");
                             }
                         }
                     }
                 }
-                Console.WriteLine();
+                fieldAsString.AppendLine();
             }
+
+            Console.WriteLine(fieldAsString.ToString()); 
+        }
+
+        public static void RenderScoreboard(string score)
+        {
+            Console.WriteLine(score);
         }
 
         public static void ResetField()
