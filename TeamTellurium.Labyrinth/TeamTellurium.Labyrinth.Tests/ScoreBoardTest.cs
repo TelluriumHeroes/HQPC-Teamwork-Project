@@ -4,10 +4,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TeamTellurium.Labyrinth.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ScoreBoardTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreateScoreboard()
         {
         }
     }
