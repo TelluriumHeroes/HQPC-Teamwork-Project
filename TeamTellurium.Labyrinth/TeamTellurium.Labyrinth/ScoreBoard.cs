@@ -8,30 +8,44 @@ namespace TeamTellurium.Labyrinth
     {
         private const string SCOREBOARD_PATH = "scoreboard.txt";
 
-        public void CreateScoreboard()
+        public FileInfo CreateScoreboard()
         {
             FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            stream.Close();
+            //using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            //{
+
+            //}
+
+            return file;
         }
 
         public void ShowScoreboard()
         {
-            CreateScoreboard();
-            FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            StreamReader fileReader = file.OpenText();
-            string line = null;
-            bool isEmpty = true;
-            int i = 0;
-            while ((line = fileReader.ReadLine()) != null)
+            FileInfo currentScoreboard = OpenScoreboardFile(); //FileInfo file = OpenFile();
+            using (StreamReader scoreboardList = currentScoreboard.OpenText())
             {
-                isEmpty = false;
-                string[] nameAndScore = line.Split();
-                Console.WriteLine("{0}: {1}->{2}", ++i, nameAndScore[0], nameAndScore[1]);
-            }
+                string currentLine = null; //string line = null;
+                bool isEmpty = true;
+                int playerPosition = 0; //int i = 0;
 
-            if (isEmpty) Console.WriteLine("Scoreboard is empty.");
-            fileReader.Close();
+                while ((currentLine = scoreboardList.ReadLine()) != null)
+                {
+                    isEmpty = false;
+                    string[] nameAndScore = currentLine.Split();
+                    Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
+                }
+
+                if (isEmpty == true) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
+                {
+                    Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
+                }
+            }
+        }
+
+        private FileInfo OpenScoreboardFile()
+        {
+            FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH);
+            return scoreBoardFile;
         }
 
         public void add(string name, int score)
