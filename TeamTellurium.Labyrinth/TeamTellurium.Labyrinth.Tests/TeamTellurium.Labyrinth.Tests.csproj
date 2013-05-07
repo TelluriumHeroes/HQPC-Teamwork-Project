@@ -53,6 +53,12 @@
     <Compile Include="ScoreBoardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TeamTellurium.Labyrinth\TeamTellurium.Labyrinth.csproj">
+      <Project>{5a707fd5-6b72-44a3-96c7-c1736d8e1b51}</Project>
+      <Name>TeamTellurium.Labyrinth</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

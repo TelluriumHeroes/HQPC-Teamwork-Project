@@ -9,6 +9,8 @@ namespace TeamTellurium.Labyrinth.Tests
         [TestMethod]
         public void CreateScoreboard()
         {
+            ScoreBoard scoreboard = new ScoreBoard();
+            scoreboard.CreateScoreboard();
         }
     }
 }

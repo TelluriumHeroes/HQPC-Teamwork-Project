@@ -117,7 +117,7 @@ namespace TeamTellurium.Labyrinth
             message.intro();
             playfield.InitializeField();
             message.nl();
-            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
+            RendererChangedName.RenderField(playfield.LabyrinthGrid, playfield.Player);
             moves = 0;
         }
 
@@ -144,7 +144,7 @@ namespace TeamTellurium.Labyrinth
                         else
                         {
                             moves++;
-                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            RendererChangedName.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
@@ -154,7 +154,7 @@ namespace TeamTellurium.Labyrinth
                         else
                         {
                             moves++;
-                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            RendererChangedName.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
@@ -164,7 +164,7 @@ namespace TeamTellurium.Labyrinth
                         else
                         {
                             moves++;
-                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            RendererChangedName.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
@@ -174,7 +174,7 @@ namespace TeamTellurium.Labyrinth
                         else
                         {
                             moves++;
-                            Renderer.RenderField(playfield.LabyrinthGrid, playfield.Player);
+                            RendererChangedName.RenderField(playfield.LabyrinthGrid, playfield.Player);
                         }
 
                         break;
