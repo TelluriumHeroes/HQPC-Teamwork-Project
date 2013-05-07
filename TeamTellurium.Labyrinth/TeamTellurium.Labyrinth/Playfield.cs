@@ -19,11 +19,6 @@ namespace TeamTellurium.Labyrinth
         {
             this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
             this.Player = new Position();
-            
-            //Remove later - !URGENT
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
         }
 
         public bool IsWinning()
@@ -101,12 +96,14 @@ namespace TeamTellurium.Labyrinth
 
         #endregion
        
+        
         private void SetStartRenderingPosition()
         {
             int startRow = 3;
             Console.SetCursorPosition(0, startRow);
         }
 
+        //TODO: Implement!
         public void ResetField()
         {
             throw new NotImplementedException();

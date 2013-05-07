@@ -11,7 +11,16 @@ namespace TeamTellurium.Labyrinth
         public FileInfo CreateScoreboard()
         {
             FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH); //FileInfo file = new FileInfo(SCOREBOARD_PATH);
+<<<<<<< HEAD
             using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite)) { };
+=======
+
+            using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
+
+            }
+
+>>>>>>> 12bdaef3d87f165b9c53b6e14508aa5ae8250625
             return scoreBoardFile;
         }
 
