@@ -35,7 +35,7 @@ namespace TeamTellurium.Labyrinth
                     Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
                 }
 
-                if (isEmpty == true) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
+                if (isEmpty == true) //if (isEmpty) Console.WriteLine("Scoreboard is empty.s");
                 {
                     Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                 }
