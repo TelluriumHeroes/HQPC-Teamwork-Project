@@ -6,15 +6,15 @@ namespace TeamTellurium.Labyrinth
 {
     public class ScoreBoard
     {
-        private const string SCOREBOARD_PATH = "scoreboard.txt";
+        private const string SCOREBOARD_PATH = "../../scoreboard.txt";
 
         public FileInfo CreateScoreboard()
         {
             FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            //using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
-            //{
+            using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            {
 
-            //}
+            }
 
             return file;
         }
@@ -58,12 +58,14 @@ namespace TeamTellurium.Labyrinth
             int index = 0;
             int[] scores = new int[5];
             string[] names = new string[5];
+
             while ((line = fileReader.ReadLine()) != null)
             {
                 string[] nameAndScore = line.Split();
                 scores[index] = Int32.Parse(nameAndScore[1]);
                 names[index++] = nameAndScore[0];
             }
+
             if (index < 5)
             {
                 scores[index] = score;
@@ -75,6 +77,7 @@ namespace TeamTellurium.Labyrinth
                     scores[index - 1] = score;
                     names[index - 1] = name;
                 }
+
             if (index == 5) index = 4;
             for (int i = 0; i <= index - 1; i++)
                 for (int j = i + 1; j <= index; j++)
