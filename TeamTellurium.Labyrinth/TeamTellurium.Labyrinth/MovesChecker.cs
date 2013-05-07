@@ -8,29 +8,16 @@ namespace TeamTellurium.Labyrinth
 {
     public static class MovesChecker
     {
-        public static bool TryMove(Playfield playfield, Direction direction)
+        public static bool IsValidMove(Playfield playfield, Direction nextDirection)
         {
             int[,] fieldGrid = playfield.LabyrinthGrid;
-            Position player = playfield.Player;
-            if (IsValidMove(fieldGrid, player, direction))
-            {
-                player.move(direction);
-            }
-            else
-            {
-                return false;
-            }
-            return true;
-        }
-
-        private static bool IsValidMove(int[,] fieldGrid, Position currentPosition, Direction nextDirection)
-        {
-            if (currentPosition.isWinning())
+            Position playerCurrentPosition = playfield.Player;
+            if (playerCurrentPosition.isWinning())
             {
                 return false;
             }
 
-            Position newPosition = new Position(currentPosition.x, currentPosition.y);
+            Position newPosition = new Position(playerCurrentPosition.x, playerCurrentPosition.y);
 
             newPosition.move(nextDirection);
 

@@ -140,40 +140,44 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "L":
 
-                        if (!MovesChecker.TryMove(playfield, Direction.Left)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Direction.Left)) message.Invalid();
                         else
                         {
                             moves++;
+                            playfield.Player.move(Direction.Left);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "U":
 
-                        if (!MovesChecker.TryMove(playfield, Direction.Up)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Direction.Up)) message.Invalid();
                         else
                         {
                             moves++;
+                            playfield.Player.move(Direction.Up);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "R":
 
-                        if (!MovesChecker.TryMove(playfield, Direction.Right)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Direction.Right)) message.Invalid();
                         else
                         {
                             moves++;
+                            playfield.Player.move(Direction.Right);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "D":
 
-                        if (!MovesChecker.TryMove(playfield, Direction.Down)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Direction.Down)) message.Invalid();
                         else
                         {
                             moves++;
+                            playfield.Player.move(Direction.Down);
                             Renderer.RenderField(playfield);
                         }
 
