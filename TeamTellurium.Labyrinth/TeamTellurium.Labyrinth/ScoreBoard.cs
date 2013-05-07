@@ -10,13 +10,13 @@ namespace TeamTellurium.Labyrinth
 
         public FileInfo CreateScoreboard()
         {
-            FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            using (FileStream stream = file.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH); //FileInfo file = new FileInfo(SCOREBOARD_PATH);
+            using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
             {
 
             }
 
-            return file;
+            return scoreBoardFile;
         }
 
         public void ShowScoreboard()
@@ -35,7 +35,7 @@ namespace TeamTellurium.Labyrinth
                     Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
                 }
 
-                if (isEmpty == true) //if (isEmpty) Console.WriteLine("Scoreboard is empty.s");
+                if (isEmpty == true) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
                 {
                     Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                 }
