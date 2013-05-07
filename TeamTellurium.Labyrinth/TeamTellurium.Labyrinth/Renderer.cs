@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
 {
-    public static class RendererChangedName
+    public static class Renderer
     {
         public static void RenderField(int[,] playField, Position Player)
         {
