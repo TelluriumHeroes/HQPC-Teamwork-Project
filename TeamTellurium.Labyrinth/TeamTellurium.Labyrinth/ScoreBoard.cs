@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace TeamTellurium.Labyrinth
 {
@@ -11,23 +12,15 @@ namespace TeamTellurium.Labyrinth
         public FileInfo CreateScoreboard()
         {
             FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH); //FileInfo file = new FileInfo(SCOREBOARD_PATH);
-<<<<<<< HEAD
             using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite)) { };
-=======
-
-            using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite))
-            {
-
-            }
-
->>>>>>> 12bdaef3d87f165b9c53b6e14508aa5ae8250625
             return scoreBoardFile;
         }
 
-        public string ShowScoreboard()
+        public StringBuilder ShowScoreboard()
         {
-            string scoreboardResult = string.Empty;
+            StringBuilder scoreboardResult = new StringBuilder();
             FileInfo currentScoreboard = OpenScoreboardFile(); //FileInfo file = OpenFile();
+            
             using (StreamReader scoreboardList = currentScoreboard.OpenText())
             {
                 string currentLine = null; //string line = null;
@@ -38,13 +31,14 @@ namespace TeamTellurium.Labyrinth
                 {
                     //isEmpty = false;
                     string[] nameAndScore = currentLine.Split();
-                    scoreboardResult = string.Format("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
+                    
+                    scoreboardResult.AppendFormat("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]).AppendLine();
                     //Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
                 }
 
                 if (scoreboardResult == string.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
                 {
-                    scoreboardResult = string.Format("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
+                    scoreboardResult.AppendFormat("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                     //Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                 }
             }
