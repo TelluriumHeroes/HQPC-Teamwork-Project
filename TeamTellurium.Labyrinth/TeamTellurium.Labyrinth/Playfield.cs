@@ -12,12 +12,18 @@ namespace TeamTellurium.Labyrinth
         private static int labyrinthGridCols = 7;
         private static Random randomNumberGenerator = new Random();
 
-        public int[,] LabyrinthGrid { get; private set; }
+        public int[,] LabyrinthGrid { get; set; }
         public Position Player { get; private set; }
 
         public Playfield()
         {
             this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
+            this.Player = new Position();
+        }
+
+        public Playfield(int[,] customLabyrinth)
+        {
+            this.LabyrinthGrid = customLabyrinth;
             this.Player = new Position();
         }
 
@@ -90,7 +96,7 @@ namespace TeamTellurium.Labyrinth
 
                 currentPosition.move(blankDirection);
 
-                LabyrinthGrid[currentPosition.x, currentPosition.y] = 0;
+                LabyrinthGrid[currentPosition.row, currentPosition.col] = 0;
             }
         }
 
