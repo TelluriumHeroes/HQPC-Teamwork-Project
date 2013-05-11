@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,31 +10,31 @@ namespace TeamTellurium.Labyrinth
     {
         private const string SCOREBOARD_PATH = "../../scoreboard.txt";
 
-        public FileInfo CreateScoreboard()
-        {
-            FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH); //FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            using (FileStream stream = scoreBoardFile.Open(FileMode.OpenOrCreate, FileAccess.ReadWrite)) { };
-            return scoreBoardFile;
-        }
-
-        public StringBuilder ShowScoreboard()
+        public string ShowScoreboard()
         {
             StringBuilder scoreboardResult = new StringBuilder();
+            Dictionary<string, string> results = new Dictionary<string, string>();
             FileInfo currentScoreboard = OpenScoreboardFile(); //FileInfo file = OpenFile();
-            
+
             using (StreamReader scoreboardList = currentScoreboard.OpenText())
             {
                 string currentLine = null; //string line = null;
-                //bool isEmpty = true;
                 int playerPosition = 0; //int i = 0;
-
+                int nameIndex = 0;
+                int scoreIndex = 1;
                 while ((currentLine = scoreboardList.ReadLine()) != null)
                 {
-                    //isEmpty = false;
                     string[] nameAndScore = currentLine.Split();
-                    
-                    scoreboardResult.AppendFormat("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]).AppendLine();
-                    //Console.WriteLine("{0}: {1}->{2}", ++playerPosition, nameAndScore[0], nameAndScore[1]);
+                    results.Add(nameAndScore[nameIndex],nameAndScore[scoreIndex]);
+                }
+
+                var sortedScoreboard = from result in results
+                                       orderby result.Value, result.Key ascending
+                                       select result;
+
+                foreach (var result in sortedScoreboard)
+                {                  
+                        scoreboardResult.AppendFormat("{0}: {1} -> {2}", ++playerPosition, result.Key, result.Value).AppendLine();                    
                 }
 
                 if (scoreboardResult.ToString() == String.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
@@ -43,7 +44,7 @@ namespace TeamTellurium.Labyrinth
                 }
             }
 
-            return scoreboardResult;
+            return scoreboardResult.ToString();
         }
 
         private FileInfo OpenScoreboardFile()
@@ -53,13 +54,14 @@ namespace TeamTellurium.Labyrinth
             {
                 CreateScoreTextFile();
             }
+
             return scoreBoardFile;
         }
-       
+
         private void CreateScoreTextFile()
         {
             string directory = Directory.GetCurrentDirectory();
-                  
+
             for (int index = 0; index < 2; index++)
             {
                 directory = directory.Substring(0, directory.LastIndexOf(@"\"));
@@ -70,53 +72,17 @@ namespace TeamTellurium.Labyrinth
             using (File.Create(filePath)) { }
         }
 
-        public void add(string name, int score)
+        public SortedDictionary<string,int> AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
         {
-            CreateScoreboard();
-
-            FileInfo file = new FileInfo(SCOREBOARD_PATH);
-            StreamReader fileReader = file.OpenText();
-            String line = null;
-            int index = 0;
-            int[] scores = new int[5];
-            string[] names = new string[5];
-
-            while ((line = fileReader.ReadLine()) != null)
+            SortedDictionary<string, int> nameAndScore = new SortedDictionary<string, int>();
+            nameAndScore.Add(playerName, playerScore);
+            
+            foreach (KeyValuePair<string,int> topScorers in nameAndScore)
             {
-                string[] nameAndScore = line.Split();
-                scores[index] = Int32.Parse(nameAndScore[1]);
-                names[index++] = nameAndScore[0];
+                File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
             }
 
-            if (index < 5)
-            {
-                scores[index] = score;
-                names[index] = name;
-            }
-            else
-                if (score < scores[index - 1])
-                {
-                    scores[index - 1] = score;
-                    names[index - 1] = name;
-                }
-
-            if (index == 5) index = 4;
-            for (int i = 0; i <= index - 1; i++)
-                for (int j = i + 1; j <= index; j++)
-                    if (scores[i] > scores[j])
-                    {
-                        int swapValue = scores[i];
-                        scores[i] = scores[j];
-                        scores[j] = swapValue;
-                        string swapValueString = names[i];
-                        names[i] = names[j];
-                        names[j] = swapValueString;
-                    }
-            fileReader.Close();
-            StreamWriter fileWriter = file.CreateText();
-            for (int i = 0; i <= index; i++)
-                fileWriter.WriteLine("{0} {1}", names[i], scores[i], i + 1);
-            fileWriter.Close();
+            return nameAndScore;
         }
     }
 }

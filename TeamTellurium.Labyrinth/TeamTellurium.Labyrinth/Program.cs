@@ -200,7 +200,7 @@ namespace TeamTellurium.Labyrinth
                     string name = Console.ReadLine();
                     try
                     {
-                        scores.add(name, moves);
+                        scores.AddPlayerInScoreboard(name, moves);
                     }
                     finally
                     {

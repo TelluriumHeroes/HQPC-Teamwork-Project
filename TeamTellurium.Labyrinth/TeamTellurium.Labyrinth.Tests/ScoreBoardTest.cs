@@ -7,21 +7,19 @@ namespace TeamTellurium.Labyrinth.Tests
     public class ScoreBoardTest
     {
         [TestMethod]
-        public void TestCreateScoreboard()
+        public void TestShowScoreboard_WhenEmpty()
         {
             ScoreBoard scoreboard = new ScoreBoard();
-            scoreboard.CreateScoreboard();
+            string actualScoreboard = scoreboard.ShowScoreboard().ToString();
+            string expectedScoreboard = "Scoreboard is empty. Congratulations, you will be the first who will play that game!";
+            Assert.AreEqual(expectedScoreboard, actualScoreboard);
         }
 
         [TestMethod]
-        public void TestShowScoreboard_EmptyScoreboard()
+        public void TestShowScoreboard_AddedOnePlayer()
         {
             ScoreBoard scoreboard = new ScoreBoard();
-            scoreboard.CreateScoreboard();
-            var actualScoreboardResult = scoreboard.ShowScoreboard();
-            //var expectedScoreboardResult = "Scoreboard is empty. Congratulations, you will be the first who will play that game!"
-            //Assert.AreEqual(actualScoreboardResult, expectedScoreboardResult);
-            
+            string actualScoreboard = scoreboard.ShowScoreboard().ToString();
         }
     }
 }
