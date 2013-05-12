@@ -31,7 +31,7 @@ namespace TeamTellurium.Labyrinth
                 var sortedScoreboard = from result in results
                                        orderby result.Value, result.Key ascending
                                        select result;
-
+                
                 foreach (var result in sortedScoreboard)
                 {                  
                         scoreboardResult.AppendFormat("{0}: {1} -> {2}", ++playerPosition, result.Key, result.Value).AppendLine();                    

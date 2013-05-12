@@ -1,0 +1,4 @@
+KOKO 5 
+ANI 5 
+ALEX 4 
+ACO 4 
