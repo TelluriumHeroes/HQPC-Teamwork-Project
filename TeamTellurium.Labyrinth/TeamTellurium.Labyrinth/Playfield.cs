@@ -8,9 +8,9 @@ namespace TeamTellurium.Labyrinth
 {
     public class Playfield
     {
+        private static Random RandomNumberGenerator = new Random();
         private static int LabyrinthGridRows = 7;
         private static int LabyrinthGridCols = 7;
-        private static Random RandomNumberGenerator = new Random();
 
         public int[,] LabyrinthGrid { get; private set; }
         public Position PlayerPosition { get; private set; }
@@ -96,8 +96,7 @@ namespace TeamTellurium.Labyrinth
         }
 
         #endregion
-       
-        
+
         private void SetStartRenderingPosition()
         {
             int startRow = 3;

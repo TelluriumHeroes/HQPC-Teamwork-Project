@@ -42,10 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Directions.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="IConsoleInput.cs" />
+    <Compile Include="ConsoleInput.cs" />
     <Compile Include="MovesChecker.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Playfield.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="LabyrinthMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScoreBoard.cs" />
   </ItemGroup>

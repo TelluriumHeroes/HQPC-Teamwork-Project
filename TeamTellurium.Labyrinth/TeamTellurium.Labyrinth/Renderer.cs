@@ -7,8 +7,8 @@ namespace TeamTellurium.Labyrinth
     {
         public static string RenderField(Playfield playfield)
         {
+            Position playerPosition = playfield.PlayerPosition;
             int[,] labyrinthGrid = playfield.LabyrinthGrid;
-            Position player = playfield.PlayerPosition;
             int rows = labyrinthGrid.GetLength(0);
             int cols = labyrinthGrid.GetLength(1);
 
@@ -18,7 +18,7 @@ namespace TeamTellurium.Labyrinth
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (player.row == row && player.col == col)
+                    if (playerPosition.row == row && playerPosition.col == col)
                     {
                         fieldAsString.Append("*");
                     }
