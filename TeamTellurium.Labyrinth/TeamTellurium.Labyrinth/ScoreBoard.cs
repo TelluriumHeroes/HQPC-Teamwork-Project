@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+
     public class ScoreBoard
     {
         private const string SCOREBOARD_PATH = "../../scoreboard.txt";
@@ -13,15 +13,15 @@ namespace TeamTellurium.Labyrinth
         public string ShowScoreboard()
         {
             StringBuilder scoreboardResult = new StringBuilder();
-            var scoreboardSorted = SortReadedScoreboardFile();
-
+            var scoreboardSorted = this.SortReadedScoreboardFile();
             int playerPosition = 0;
+
             foreach (var result in scoreboardSorted)
             {
                 scoreboardResult.AppendFormat("{0}: {1} -> {2}", ++playerPosition, result.Key, result.Value).AppendLine();
             }
 
-            if (scoreboardResult.ToString() == String.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
+            if (scoreboardResult.ToString() == string.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
             {
                 scoreboardResult.AppendFormat("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
                 //Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
@@ -30,29 +30,43 @@ namespace TeamTellurium.Labyrinth
             return scoreboardResult.ToString();
         }
 
+        public SortedDictionary<string, int> AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
+        {
+            SortedDictionary<string, int> nameAndScore = new SortedDictionary<string, int>();
+            nameAndScore.Add(playerName, playerScore);
+
+            foreach (KeyValuePair<string, int> topScorers in nameAndScore)
+            {
+                File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
+            }
+
+            return nameAndScore;
+        }
+
         private List<KeyValuePair<string, int>> ReadScoreboardFile()
         {
-            FileInfo currentScoreboard = OpenScoreboardFile(); //FileInfo file = OpenFile();
-            var results = new List<KeyValuePair<string, int>>();
+            FileInfo currentScoreboard = this.OpenScoreboardFile(); //FileInfo file = OpenFile();
+            var scoreboard = new List<KeyValuePair<string, int>>();
 
             using (StreamReader scoreboardList = currentScoreboard.OpenText())
             {
                 string currentLine = null; //string line = null;
                 int nameIndex = 0;
                 int scoreIndex = 1;
+
                 while ((currentLine = scoreboardList.ReadLine()) != null)
                 {
                     string[] nameAndScore = currentLine.Split();
-                    results.Add(new KeyValuePair<string, int>(nameAndScore[nameIndex], Int32.Parse(nameAndScore[scoreIndex])));
+                    scoreboard.Add(new KeyValuePair<string, int>(nameAndScore[nameIndex], int.Parse(nameAndScore[scoreIndex])));
                 }
             }
 
-            return results;
+            return scoreboard;
         }
 
         private List<KeyValuePair<string, int>> SortReadedScoreboardFile()
         {
-            var scoreboardList = ReadScoreboardFile();
+            var scoreboardList = this.ReadScoreboardFile();
             var sortedScoreboardList = from items in scoreboardList
                                        orderby items.Value, items.Key ascending
                                        select items;
@@ -65,7 +79,7 @@ namespace TeamTellurium.Labyrinth
             FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH);
             if (!scoreBoardFile.Exists)
             {
-                CreateScoreTextFile();
+                this.CreateScoreTextFile();
             }
 
             return scoreBoardFile;
@@ -79,30 +93,13 @@ namespace TeamTellurium.Labyrinth
             {
                 directory = directory.Substring(0, directory.LastIndexOf(@"\"));
             }
+
             string fileName = SCOREBOARD_PATH.Substring(SCOREBOARD_PATH.LastIndexOf("/") + 1);
             string filePath = directory + @"\" + fileName;
 
-            using (File.Create(filePath)) { }
-        }
-
-        public SortedDictionary<string, int> AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
-        {
-            SortedDictionary<string, int> nameAndScore = new SortedDictionary<string, int>();
-            nameAndScore.Add(playerName, playerScore);
-
-            //else
-            //{
-            //    //Message enterName = new Message();
-            //    //enterName.win(playerScore);
-
-            //}
-
-            foreach (KeyValuePair<string, int> topScorers in nameAndScore)
+            using (File.Create(filePath))
             {
-                File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
             }
-
-            return nameAndScore;
         }
     }
 }
