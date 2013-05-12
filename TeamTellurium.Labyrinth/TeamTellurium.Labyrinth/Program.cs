@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
+
 namespace TeamTellurium.Labyrinth
 {
     public enum Direction { Blank = -1, Left, Up, Right, Down };
@@ -44,17 +46,17 @@ namespace TeamTellurium.Labyrinth
 
     public class Position
     {
-        public int x;
-        public int y;
+        public int row;
+        public int col;
         public Position()
         {
-            this.x = 3;
-            this.y = 3;
+            this.row = 3;
+            this.col = 3;
         }
         public Position(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.row = x;
+            this.col = y;
         }
 
         public bool move(Direction direction)
@@ -63,16 +65,16 @@ namespace TeamTellurium.Labyrinth
             switch (direction)
             {
                 case Direction.Left:
-                    this.x -= 1;
+                    this.col -= 1;
                     break;
                 case Direction.Up:
-                    this.y -= 1;
+                    this.row -= 1;
                     break;
                 case Direction.Right:
-                    this.x += 1;
+                    this.col += 1;
                     break;
                 case Direction.Down:
-                    this.y += 1;
+                    this.row += 1;
                     break;
                 default:
                     return false;
@@ -82,25 +84,25 @@ namespace TeamTellurium.Labyrinth
 
         public bool isWinning()
         {
-            bool resault;
-            resault = false;
-            if (x == 0 || x == 6 || y == 0 || y == 6)
-                resault = true;
-            return resault;
+            bool result;
+            result = false;
+            if (row == 0 || row == 6 || col == 0 || col == 6)
+                result = true;
+            return result;
         }
 
 
 
         public bool isValidPosition()
         {
-            if (x <= 6 && x >= 0 && y >= 0 && y <= 6) return true;
+            if (row <= 6 && row >= 0 && col >= 0 && col <= 6) return true;
             else return false;
         }
 
         public void makeStarting()
         {
-            this.x = 3;
-            this.y = 3;
+            this.row = 3;
+            this.col = 3;
         }
     }
 

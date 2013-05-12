@@ -22,19 +22,19 @@ namespace TeamTellurium.Labyrinth
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (player.x == col && player.y == row)
+                    if (player.row == row && player.col == col)
                     {
                         fieldAsString.Append("*");
                     }
                     else
                     {
-                        if (labyrinthGrid[col, row] == 0)
+                        if (labyrinthGrid[row, col] == 0)
                         {
                             fieldAsString.Append("-");
                         }
                         else
                         {
-                            if (labyrinthGrid[col, row] == 1)
+                            if (labyrinthGrid[row, col] == 1)
                             {
                                 fieldAsString.Append("X");
                             }
