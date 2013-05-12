@@ -8,4 +8,4 @@ PLAMEN 3
 IVO 4 
 IVO 4 
 TTT 5 
-L 5 DSADSA 4 
+L 5

@@ -88,16 +88,16 @@ namespace TeamTellurium.Labyrinth
         public SortedDictionary<string, int> AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
         {
             SortedDictionary<string, int> nameAndScore = new SortedDictionary<string, int>();
-            if (!string.IsNullOrEmpty(playerName))
-            {
-                nameAndScore.Add(playerName, playerScore);
-            }
-            else
-            {
-                //Message enterName = new Message();
-                //enterName.win(playerScore);
+            //if (!string.IsNullOrEmpty(playerName))
+            //{
+            //    nameAndScore.Add(playerName, playerScore);
+            //}
+            //else
+            //{
+            //    //Message enterName = new Message();
+            //    //enterName.win(playerScore);
                 
-            }
+            //}
 
             foreach (KeyValuePair<string, int> topScorers in nameAndScore)
             {
