@@ -1,0 +1,11 @@
+KOKO 5 
+ANI 5 
+ALEX 4 
+ACO 4 
+GINKA 3 
+ACO 4 
+PLAMEN 3 
+IVO 4 
+IVO 4 
+TTT 5 
+L 5
