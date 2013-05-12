@@ -14,7 +14,7 @@ namespace TeamTellurium.Labyrinth
         {
             StringBuilder scoreboardResult = new StringBuilder();
             var scoreboardSorted = SortReadedScoreboardFile();
-            
+
             int playerPosition = 0;
             foreach (var result in scoreboardSorted)
             {
@@ -43,18 +43,21 @@ namespace TeamTellurium.Labyrinth
                 while ((currentLine = scoreboardList.ReadLine()) != null)
                 {
                     string[] nameAndScore = currentLine.Split();
-                    results.Add(new KeyValuePair<string, int>(nameAndScore[nameIndex],Int32.Parse(nameAndScore[scoreIndex])));
+                    results.Add(new KeyValuePair<string, int>(nameAndScore[nameIndex], Int32.Parse(nameAndScore[scoreIndex])));
                 }
             }
-            //results.Sort(SortByPlayerScore);
-            return results;       
+
+            return results;
         }
 
         private List<KeyValuePair<string, int>> SortReadedScoreboardFile()
         {
-            var sorted = ReadScoreboardFile();
-            sorted.Sort(SortByPlayerScore);
-            return sorted; 
+            var scoreboardList = ReadScoreboardFile();
+            var sortedScoreboardList = from items in scoreboardList
+                                       orderby items.Value, items.Key ascending
+                                       select items;
+
+            return sortedScoreboardList.ToList();
         }
 
         private FileInfo OpenScoreboardFile()
@@ -89,18 +92,19 @@ namespace TeamTellurium.Labyrinth
             {
                 nameAndScore.Add(playerName, playerScore);
             }
-            
+            else
+            {
+                //Message enterName = new Message();
+                //enterName.win(playerScore);
+                
+            }
+
             foreach (KeyValuePair<string, int> topScorers in nameAndScore)
             {
                 File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
             }
 
             return nameAndScore;
-        }
-
-        static int SortByPlayerScore(KeyValuePair<string, int> playerOneScore, KeyValuePair<string, int> playerTwoScore)
-        {
-            return playerOneScore.Value.CompareTo(playerTwoScore.Value);
         }
     }
 }
