@@ -26,9 +26,6 @@ namespace TeamTellurium.Labyrinth
         }
         public void nl()
         {
-
-
-
             Console.WriteLine();
         }
         public void win(int moves)
@@ -106,7 +103,7 @@ namespace TeamTellurium.Labyrinth
         }
     }
 
- 
+
     public class Program
     {
         static Playfield playfield = new Playfield();
@@ -127,11 +124,11 @@ namespace TeamTellurium.Labyrinth
         {
 
             newGame();
-            scores=new ScoreBoard();
+            scores = new ScoreBoard();
             String input = "";
             message.move();
             while ((input = Console.ReadLine()) != "exit")
-            {   
+            {
                 switch (input)
                 {
                     case "top":
@@ -193,21 +190,15 @@ namespace TeamTellurium.Labyrinth
 
                 }
 
-
-                
-
                 if (playfield.IsWinning())
                 {
-                    message.win(moves);
-                    string name = Console.ReadLine();
-                    try
+                    string name;
+                    do
                     {
-                        scores.AddPlayerInScoreboard(name, moves);
-                    }
-                    finally
-                    {
-
-                    };
+                        message.win(moves);
+                        name = Console.ReadLine();                     
+                    } while (string.IsNullOrEmpty(name));
+                    scores.AddPlayerInScoreboard(name, moves);
                     message.nl();
                     newGame();
                 }
