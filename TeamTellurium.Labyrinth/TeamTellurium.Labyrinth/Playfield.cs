@@ -8,54 +8,51 @@ namespace TeamTellurium.Labyrinth
 {
     public class Playfield
     {
-        private static int labyrinthGridRows = 7;
-        private static int labyrinthGridCols = 7;
-        private static Random randomNumberGenerator = new Random();
+        private static int LabyrinthGridRows = 7;
+        private static int LabyrinthGridCols = 7;
+        private static Random RandomNumberGenerator = new Random();
 
-        public int[,] LabyrinthGrid { get; set; }
-        public Position Player { get; private set; }
+        public int[,] LabyrinthGrid { get; private set; }
+        public Position PlayerPosition { get; private set; }
 
         public Playfield()
         {
-            this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
-            this.Player = new Position();
+            this.LabyrinthGrid = new int[LabyrinthGridRows, LabyrinthGridCols];
+            this.PlayerPosition = new Position();
         }
 
         public Playfield(int[,] customLabyrinth)
         {
             this.LabyrinthGrid = customLabyrinth;
-            this.Player = new Position();
+            this.PlayerPosition = new Position();
         }
 
         public bool IsWinning()
         {
-            return Player.isWinning();
+            return PlayerPosition.isWinning();
         }
 
         #region GameFieldStartInitValues
 
         public void InitializeField()
         {
-            this.Player = new Position();
-
+            this.PlayerPosition = new Position();
             IntializeEmptyField();
-
             //Player initial position
             LabyrinthGrid[3, 3] = 0;
-
             EnsureClearPath();
             InitializeRandomValues();
         }
 
         private void InitializeRandomValues()
         {
-            for (int row = 0; row < labyrinthGridRows; row++)
+            for (int row = 0; row < LabyrinthGridRows; row++)
             {
-                for (int col = 0; col < labyrinthGridCols; col++)
+                for (int col = 0; col < LabyrinthGridCols; col++)
                 {
                     if (LabyrinthGrid[row, col] == -1)
                     {
-                        int randomNumber = randomNumberGenerator.Next();
+                        int randomNumber = RandomNumberGenerator.Next();
                         if (randomNumber % 3 == 0)
                         {
                             LabyrinthGrid[row, col] = 0;
@@ -71,9 +68,9 @@ namespace TeamTellurium.Labyrinth
 
         private void IntializeEmptyField()
         {
-            for (int row = 0; row < labyrinthGridRows; row++)
+            for (int row = 0; row < LabyrinthGridRows; row++)
             {
-                for (int col = 0; col < labyrinthGridCols; col++)
+                for (int col = 0; col < LabyrinthGridCols; col++)
                 {
                     LabyrinthGrid[row, col] = -1;
                 }
@@ -82,21 +79,19 @@ namespace TeamTellurium.Labyrinth
 
         public void EnsureClearPath()
         {
-            Direction blankDirection = Direction.Blank;
+            Directions nextDirection = new Directions();
             Position currentPosition = new Position();
 
             while (!currentPosition.isWinning())
             {
-                do
+                int randomNumber = RandomNumberGenerator.Next(-1, 4);
+                nextDirection = (Directions)(randomNumber);
+                if (!MovesChecker.IsValidMove(this, nextDirection))
                 {
-                    int randomNumber = randomNumberGenerator.Next(-1, 4);
-                    blankDirection = (Direction)(randomNumber);
+                    currentPosition.move(nextDirection);
 
-                } while (!MovesChecker.IsBlankMove(this.LabyrinthGrid, currentPosition, blankDirection));
-
-                currentPosition.move(blankDirection);
-
-                LabyrinthGrid[currentPosition.row, currentPosition.col] = 0;
+                    this.LabyrinthGrid[currentPosition.row, currentPosition.col] = 0;
+                }
             }
         }
 

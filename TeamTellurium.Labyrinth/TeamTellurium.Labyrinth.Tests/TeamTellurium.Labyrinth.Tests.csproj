@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MovesCheckerTests.cs" />
+    <Compile Include="RendererTests.cs" />
     <Compile Include="ScoreBoardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

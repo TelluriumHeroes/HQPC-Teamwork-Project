@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace TeamTellurium.Labyrinth
 {
-    public enum Direction { Blank = -1, Left, Up, Right, Down };
+    
 
     public class Message
     {
@@ -59,21 +59,21 @@ namespace TeamTellurium.Labyrinth
             this.col = y;
         }
 
-        public bool move(Direction direction)
+        public bool move(Directions direction)
         {
             if (isWinning()) return false;
             switch (direction)
             {
-                case Direction.Left:
+                case Directions.Left:
                     this.col -= 1;
                     break;
-                case Direction.Up:
+                case Directions.Up:
                     this.row -= 1;
                     break;
-                case Direction.Right:
+                case Directions.Right:
                     this.col += 1;
                     break;
-                case Direction.Down:
+                case Directions.Down:
                     this.row += 1;
                     break;
                 default:
@@ -143,44 +143,44 @@ namespace TeamTellurium.Labyrinth
                         break;
                     case "L":
 
-                        if (!MovesChecker.IsValidMove(playfield, Direction.Left)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Directions.Left)) message.Invalid();
                         else
                         {
                             moves++;
-                            playfield.Player.move(Direction.Left);
+                            playfield.PlayerPosition.move(Directions.Left);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "U":
 
-                        if (!MovesChecker.IsValidMove(playfield, Direction.Up)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Directions.Up)) message.Invalid();
                         else
                         {
                             moves++;
-                            playfield.Player.move(Direction.Up);
+                            playfield.PlayerPosition.move(Directions.Up);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "R":
 
-                        if (!MovesChecker.IsValidMove(playfield, Direction.Right)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Directions.Right)) message.Invalid();
                         else
                         {
                             moves++;
-                            playfield.Player.move(Direction.Right);
+                            playfield.PlayerPosition.move(Directions.Right);
                             Renderer.RenderField(playfield);
                         }
 
                         break;
                     case "D":
 
-                        if (!MovesChecker.IsValidMove(playfield, Direction.Down)) message.Invalid();
+                        if (!MovesChecker.IsValidMove(playfield, Directions.Down)) message.Invalid();
                         else
                         {
                             moves++;
-                            playfield.Player.move(Direction.Down);
+                            playfield.PlayerPosition.move(Directions.Down);
                             Renderer.RenderField(playfield);
                         }
 
