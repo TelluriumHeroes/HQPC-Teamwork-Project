@@ -13,9 +13,10 @@ namespace TeamTellurium.Labyrinth
         public string ShowScoreboard()
         {
             StringBuilder scoreboardResult = new StringBuilder();
-            var sortedScoreboard = ReadScoreboardFile();
+            var scoreboardSorted = SortReadedScoreboardFile();
+            
             int playerPosition = 0;
-            foreach (var result in sortedScoreboard)
+            foreach (var result in scoreboardSorted)
             {
                 scoreboardResult.AppendFormat("{0}: {1} -> {2}", ++playerPosition, result.Key, result.Value).AppendLine();
             }
@@ -45,8 +46,15 @@ namespace TeamTellurium.Labyrinth
                     results.Add(new KeyValuePair<string, int>(nameAndScore[nameIndex],Int32.Parse(nameAndScore[scoreIndex])));
                 }
             }
-            results.Sort(Compare1);
-            return results;           
+            //results.Sort(SortByPlayerScore);
+            return results;       
+        }
+
+        private List<KeyValuePair<string, int>> SortReadedScoreboardFile()
+        {
+            var sorted = ReadScoreboardFile();
+            sorted.Sort(SortByPlayerScore);
+            return sorted; 
         }
 
         private FileInfo OpenScoreboardFile()
@@ -90,9 +98,9 @@ namespace TeamTellurium.Labyrinth
             return nameAndScore;
         }
 
-        static int Compare1(KeyValuePair<string, int> a, KeyValuePair<string, int> b)
+        static int SortByPlayerScore(KeyValuePair<string, int> playerOneScore, KeyValuePair<string, int> playerTwoScore)
         {
-            return a.Value.CompareTo(b.Value);
+            return playerOneScore.Value.CompareTo(playerTwoScore.Value);
         }
     }
 }
