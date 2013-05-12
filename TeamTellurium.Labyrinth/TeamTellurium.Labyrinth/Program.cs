@@ -125,11 +125,11 @@ namespace TeamTellurium.Labyrinth
 
         static void Main(string[] args)
         {
-
             newGame();
             scores=new ScoreBoard();
             String input = "";
             message.move();
+
             while ((input = Console.ReadLine()) != "exit")
             {   
                 switch (input)
@@ -198,6 +198,7 @@ namespace TeamTellurium.Labyrinth
 
                 if (playfield.IsWinning())
                 {
+                   
                     message.win(moves);
                     string name = Console.ReadLine();
                     try

@@ -5,11 +5,10 @@ namespace TeamTellurium.Labyrinth
 {
     public static class Renderer
     {
-        public static void RenderField(Playfield playfield)
+        public static string RenderField(Playfield playfield)
         {
             int[,] labyrinthGrid = playfield.LabyrinthGrid;
             Position player = playfield.PlayerPosition;
-
             int rows = labyrinthGrid.GetLength(0);
             int cols = labyrinthGrid.GetLength(1);
 
@@ -40,8 +39,10 @@ namespace TeamTellurium.Labyrinth
                 }
                 fieldAsString.AppendLine();
             }
+            Console.WriteLine(fieldAsString.ToString());
 
-            Console.WriteLine(fieldAsString.ToString());  
+            //For testing purpose only
+            return fieldAsString.ToString();
         }
 
         public static void RenderScoreboard(string score)
