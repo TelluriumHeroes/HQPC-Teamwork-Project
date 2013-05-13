@@ -8,16 +8,16 @@ namespace TeamTellurium.Labyrinth
 {
     public class Playfield
     {
-        private static Random RandomNumberGenerator = new Random();
-        private static int LabyrinthGridRows = 7;
-        private static int LabyrinthGridCols = 7;
+        private static readonly Random randomNumberGenerator = new Random();
+        private static readonly int labyrinthGridRows = 7;
+        private static readonly int labyrinthGridCols = 7;
 
         public int[,] LabyrinthGrid { get; private set; }
         public Position PlayerPosition { get; private set; }
 
         public Playfield()
         {
-            this.LabyrinthGrid = new int[LabyrinthGridRows, LabyrinthGridCols];
+            this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
             this.PlayerPosition = new Position();
         }
 
@@ -29,7 +29,7 @@ namespace TeamTellurium.Labyrinth
 
         public bool IsWinning()
         {
-            return PlayerPosition.IsWinning();
+            return this.PlayerPosition.IsWinner();
         }
 
         #region GameFieldStartInitValues
@@ -37,44 +37,11 @@ namespace TeamTellurium.Labyrinth
         public void InitializeField()
         {
             this.PlayerPosition = new Position();
-            IntializeEmptyField();
+            this.IntializeEmptyField();
             //Player initial position
-            LabyrinthGrid[3, 3] = 0;
-            EnsureClearPath();
-            InitializeRandomValues();
-        }
-
-        private void InitializeRandomValues()
-        {
-            for (int row = 0; row < LabyrinthGridRows; row++)
-            {
-                for (int col = 0; col < LabyrinthGridCols; col++)
-                {
-                    if (LabyrinthGrid[row, col] == -1)
-                    {
-                        int randomNumber = RandomNumberGenerator.Next();
-                        if (randomNumber % 3 == 0)
-                        {
-                            LabyrinthGrid[row, col] = 0;
-                        }
-                        else
-                        {
-                            LabyrinthGrid[row, col] = 1;
-                        }
-                    }
-                }
-            }
-        }
-
-        private void IntializeEmptyField()
-        {
-            for (int row = 0; row < LabyrinthGridRows; row++)
-            {
-                for (int col = 0; col < LabyrinthGridCols; col++)
-                {
-                    LabyrinthGrid[row, col] = -1;
-                }
-            }
+            this.LabyrinthGrid[3, 3] = 0;
+            this.EnsureClearPath();
+            this.InitializeRandomValues();
         }
 
         public void EnsureClearPath()
@@ -82,13 +49,13 @@ namespace TeamTellurium.Labyrinth
             Directions nextDirection = new Directions();
             Position currentPosition = new Position();
 
-            while (!currentPosition.IsWinning())
+            while (!currentPosition.IsWinner())
             {
-                int randomNumber = RandomNumberGenerator.Next(-1, 4);
+                int randomNumber = randomNumberGenerator.Next(-1, 4);
                 nextDirection = (Directions)(randomNumber);
                 if (!MovesChecker.IsValidMove(this, nextDirection))
                 {
-                    currentPosition.Move(nextDirection);
+                    currentPosition.IsMoved(nextDirection);
 
                     this.LabyrinthGrid[currentPosition.Row, currentPosition.Col] = 0;
                 }
@@ -107,6 +74,39 @@ namespace TeamTellurium.Labyrinth
         public void ResetField()
         {
             throw new NotImplementedException();
+        }
+
+        private void InitializeRandomValues()
+        {
+            for (int row = 0; row < labyrinthGridRows; row++)
+            {
+                for (int col = 0; col < labyrinthGridCols; col++)
+                {
+                    if (LabyrinthGrid[row, col] == -1)
+                    {
+                        int randomNumber = randomNumberGenerator.Next();
+                        if (randomNumber % 3 == 0)
+                        {
+                            this.LabyrinthGrid[row, col] = 0;
+                        }
+                        else
+                        {
+                            this.LabyrinthGrid[row, col] = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void IntializeEmptyField()
+        {
+            for (int row = 0; row < labyrinthGridRows; row++)
+            {
+                for (int col = 0; col < labyrinthGridCols; col++)
+                {
+                    this.LabyrinthGrid[row, col] = -1;
+                }
+            }
         }
     }
 }
