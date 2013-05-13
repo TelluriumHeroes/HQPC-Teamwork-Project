@@ -51,12 +51,12 @@ namespace TeamTellurium.Labyrinth.Tests
             Playfield playfield = new Playfield(labyrinthGrid);
 
             //Moving playerPosition at row=2 and col=6 (start index=0)
-            playfield.PlayerPosition.move(Directions.Up);
-            playfield.PlayerPosition.move(Directions.Up);
-            playfield.PlayerPosition.move(Directions.Right);
-            playfield.PlayerPosition.move(Directions.Right);
-            playfield.PlayerPosition.move(Directions.Down);
-            playfield.PlayerPosition.move(Directions.Right);
+            playfield.PlayerPosition.Move(Directions.Up);
+            playfield.PlayerPosition.Move(Directions.Up);
+            playfield.PlayerPosition.Move(Directions.Right);
+            playfield.PlayerPosition.Move(Directions.Right);
+            playfield.PlayerPosition.Move(Directions.Down);
+            playfield.PlayerPosition.Move(Directions.Right);
 
             string actualOutput = Renderer.RenderField(playfield);
             StringBuilder expectedOutput = new StringBuilder();

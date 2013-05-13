@@ -9,37 +9,59 @@ namespace TeamTellurium.Labyrinth
     public class Position
     {
         private const int INITIAL_ROW = 3;
-        private const int INITIAL_COW = 3;
+        private const int INITIAL_COL = 3;
         private int row;
         private int col;
         
         public int Row
         {
-            get;
-            set;
+            get 
+            {
+                return this.row;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    this.Row = value;
+                }
+            }
         }
 
         public int Col
         {
-            get;
-            set;
+            get
+            {
+                return this.col;
+            }
+            set
+            {
+                if (value > 0)
+                {
+                    this.Col = value;
+                }
+            }
         }
 
         public Position()
         {
             this.row = INITIAL_ROW;
-            this.col = INITIAL_COW;
+            this.col = INITIAL_COL;
         }
 
-        public Position(int x, int y)
+        public Position(int xCoordinate, int yCoordinate)
         {
-            this.row = x;
-            this.col = y;
+            this.row = xCoordinate;
+            this.col = yCoordinate;
         }
 
-        public bool move(Directions direction)
+        public bool Move(Directions direction)
         {
-            if (isWinning()) return false;
+            if (IsWinning())
+            { 
+                return false; 
+            
+            }
             switch (direction)
             {
                 case Directions.Left:
@@ -60,27 +82,34 @@ namespace TeamTellurium.Labyrinth
             return true;
         }
 
-        public bool isWinning()
+        public bool IsWinning()
         {
-            bool result;
-            result = false;
+            bool isWinner = false;
+
             if (row == 0 || row == 6 || col == 0 || col == 6)
-                result = true;
-            return result;
+            {
+                isWinner = true;
+            }
+
+            return isWinner;
         }
 
-
-
-        public bool isValidPosition()
+        public bool IsValidPosition()
         {
-            if (row <= 6 && row >= 0 && col >= 0 && col <= 6) return true;
-            else return false;
+            if (row <= 6 && row >= 0 && col >= 0 && col <= 6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void makeStarting()
+        public void MakeStarting()
         {
-            this.row = 3;
-            this.col = 3;
+            this.row = INITIAL_ROW;
+            this.col = INITIAL_COL;
         }
     }
 }

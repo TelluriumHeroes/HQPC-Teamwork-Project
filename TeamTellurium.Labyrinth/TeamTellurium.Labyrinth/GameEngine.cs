@@ -103,22 +103,22 @@ namespace TeamTellurium.Labyrinth
 
         public void MoveLeft()
         {
-            Playfield.PlayerPosition.move(Directions.Left);
+            Playfield.PlayerPosition.Move(Directions.Left);
         }
 
         public void MoveRight()
         {
-            Playfield.PlayerPosition.move(Directions.Right);
+            Playfield.PlayerPosition.Move(Directions.Right);
         }
 
         public void MoveUp()
         {
-            Playfield.PlayerPosition.move(Directions.Up);
+            Playfield.PlayerPosition.Move(Directions.Up);
         }
 
         public void MoveDown()
         {
-            Playfield.PlayerPosition.move(Directions.Down);
+            Playfield.PlayerPosition.Move(Directions.Down);
         }
 
         public void QuitGame()

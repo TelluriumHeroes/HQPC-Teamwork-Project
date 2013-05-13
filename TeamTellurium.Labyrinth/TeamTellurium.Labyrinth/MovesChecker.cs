@@ -14,11 +14,11 @@ namespace TeamTellurium.Labyrinth
             int playerCurrentCol = playfield.PlayerPosition.Col;
             Position playerCurrentPosition = new Position(playerCurrentRow, playerCurrentCol);
             
-            if (playerCurrentPosition.isWinning())
+            if (playerCurrentPosition.IsWinning())
             {
                 return false;
             }
-            playerCurrentPosition.move(nextDirection);
+            playerCurrentPosition.Move(nextDirection);
 
             int[,] fieldGrid = playfield.LabyrinthGrid;
             return IsValidPosition(fieldGrid, playerCurrentPosition);
@@ -26,7 +26,7 @@ namespace TeamTellurium.Labyrinth
 
         private static bool IsValidPosition(int[,] fieldGrid, Position currentPosition)
         {
-            return fieldGrid[currentPosition.Row, currentPosition.Col] == 0 && currentPosition.isValidPosition();
+            return fieldGrid[currentPosition.Row, currentPosition.Col] == 0 && currentPosition.IsValidPosition();
         }
     }
 }
