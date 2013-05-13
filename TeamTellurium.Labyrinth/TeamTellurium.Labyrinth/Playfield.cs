@@ -27,7 +27,7 @@ namespace TeamTellurium.Labyrinth
             this.PlayerPosition = new Position();
         }
 
-        public bool IsWinning()
+        public bool IsVictory()
         {
             return this.PlayerPosition.IsWinner();
         }

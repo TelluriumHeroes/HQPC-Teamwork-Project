@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
@@ -12,6 +13,7 @@ namespace TeamTellurium.Labyrinth
         private Playfield Playfield { get; set; }
         private Messages Messages { get; set; }
         private ScoreBoard Scoreboard { get; set; }
+        
         private int Score { get; set; }
         private bool HasGameQuit { get; set; }
 
@@ -28,29 +30,18 @@ namespace TeamTellurium.Labyrinth
         {
             this.InitializeNewGame();
 
-            Console.WriteLine(Messages.MoveInstructions());
-
             while (!this.HasGameQuit)
             {
                 this.UserInput.ProcessInput();
 
-                if (Playfield.IsWinning())
+                RenderAll();
+
+                if (Playfield.IsVictory())
                 {
-                    Console.Clear();
-                    Console.WriteLine(this.Messages.WelcomeMessage());
-                    Renderer.RenderField(this.Playfield);
                     this.OnGameOver();
                 }
 
-                if (!this.HasGameQuit)
-                {
-                    Console.Clear();
-                    Console.WriteLine(this.Messages.WelcomeMessage());
-                    Messages.NewLine();
-                    Renderer.RenderField(this.Playfield);
-                    Console.WriteLine(this.Messages.MoveInstructions());
-                }
-                else
+                if (this.HasGameQuit)
                 {
                     Console.WriteLine("Good Bye!");
                     Console.ReadKey();
@@ -60,11 +51,16 @@ namespace TeamTellurium.Labyrinth
 
         public void InitializeNewGame()
         {
-            Console.WriteLine(Messages.WelcomeMessage());
-            Playfield.InitializeField();
-            Messages.NewLine();
-            Renderer.RenderField(Playfield);
             this.Score = 0;
+            Playfield.InitializeField();
+            RenderAll();
+        }
+
+        private void RenderAll()
+        {
+            Renderer.ResetField();
+            Renderer.RenderInfo(this.Messages);
+            Renderer.RenderField(this.Playfield);
         }
 
         public void ShowTopResults()
@@ -74,16 +70,17 @@ namespace TeamTellurium.Labyrinth
             Console.ReadKey();
         }
 
-        public void MoveAtDirection(Directions direction, Action movementAction)
+        public void MoveAtDirection(Directions direction, Action MovementAction)
         {
             if (MovesChecker.IsValidMove(Playfield, direction))
             {
                 this.Score++;
-                movementAction();
+                MovementAction();
             }
             else
-            {
+            {   
                 Console.WriteLine(Messages.InvalidMove());
+                Thread.Sleep(500);
             }
         }
 
@@ -117,7 +114,7 @@ namespace TeamTellurium.Labyrinth
             string name;
             do
             {
-                Console.WriteLine(Messages.WinnerCongratsMessage(this.Score));
+                Renderer.RenderWinInfo(this.Messages, this.Score);
                 name = Console.ReadLine();
             }
             while (string.IsNullOrEmpty(name));

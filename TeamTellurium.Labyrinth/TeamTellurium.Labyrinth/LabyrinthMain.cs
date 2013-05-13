@@ -9,11 +9,11 @@
         {
             Playfield playfield = new Playfield();
             GameEngine engine = new GameEngine(playfield);
-            HandleMoveEvents(engine, engine.UserInput);
+            AssignEvents(engine, engine.UserInput);
             engine.Run();
         }
 
-        public static void HandleMoveEvents(GameEngine engine, ConsoleInput movement)
+        public static void AssignEvents(GameEngine engine, ConsoleInput movement)
         {
             movement.OnWriteL += (sender, eventInfo) =>
             {
