@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Diagnostics;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+    using System.Linq;
+
     public class LabyrinthMain
     {
         public static void Main(string[] args)
