@@ -47,6 +47,7 @@
     <Compile Include="ConsoleInput.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="MovesChecker.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Renderer.cs" />
     <Compile Include="Playfield.cs" />
     <Compile Include="LabyrinthMain.cs" />

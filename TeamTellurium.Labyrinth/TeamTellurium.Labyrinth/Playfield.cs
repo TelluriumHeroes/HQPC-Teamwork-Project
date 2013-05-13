@@ -90,7 +90,7 @@ namespace TeamTellurium.Labyrinth
                 {
                     currentPosition.move(nextDirection);
 
-                    this.LabyrinthGrid[currentPosition.row, currentPosition.col] = 0;
+                    this.LabyrinthGrid[currentPosition.Row, currentPosition.Col] = 0;
                 }
             }
         }

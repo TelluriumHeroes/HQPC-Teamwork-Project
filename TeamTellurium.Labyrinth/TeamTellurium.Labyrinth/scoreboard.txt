@@ -35,3 +35,5 @@ pesho 5
 das 4 
 qwe 3 
 sada 4 
+PICHKA 4 
+plamen 3 

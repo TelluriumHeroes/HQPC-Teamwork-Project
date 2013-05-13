@@ -18,7 +18,7 @@ namespace TeamTellurium.Labyrinth
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (playerPosition.row == row && playerPosition.col == col)
+                    if (playerPosition.Row == row && playerPosition.Col == col)
                     {
                         fieldAsString.Append("*");
                     }

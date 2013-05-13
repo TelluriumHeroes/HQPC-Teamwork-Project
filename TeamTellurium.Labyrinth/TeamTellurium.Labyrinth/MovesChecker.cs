@@ -10,8 +10,8 @@ namespace TeamTellurium.Labyrinth
     {
         public static bool IsValidMove(Playfield playfield, Directions nextDirection)
         {
-            int playerCurrentRow = playfield.PlayerPosition.row;
-            int playerCurrentCol = playfield.PlayerPosition.col;
+            int playerCurrentRow = playfield.PlayerPosition.Row;
+            int playerCurrentCol = playfield.PlayerPosition.Col;
             Position playerCurrentPosition = new Position(playerCurrentRow, playerCurrentCol);
             
             if (playerCurrentPosition.isWinning())
@@ -26,7 +26,7 @@ namespace TeamTellurium.Labyrinth
 
         private static bool IsValidPosition(int[,] fieldGrid, Position currentPosition)
         {
-            return fieldGrid[currentPosition.row, currentPosition.col] == 0 && currentPosition.isValidPosition();
+            return fieldGrid[currentPosition.Row, currentPosition.Col] == 0 && currentPosition.isValidPosition();
         }
     }
 }
