@@ -21,6 +21,7 @@
             {
                 return this.row;
             }
+
             set
             {
                 if (value > 0)
@@ -40,6 +41,7 @@
             {
                 return this.col;
             }
+
             set
             {
                 if (value > 0)
@@ -67,7 +69,7 @@
 
         public bool IsMoved(Directions direction)
         {
-            if (IsWinner())
+            if (this.IsWinner())
             {
                 return false;
             }
@@ -97,8 +99,8 @@
         {
             bool isWinner = false;
 
-            if (row == TOP_ESCAPE_POSITION || row == BOTTOM_ESCAPE_POSITION
-                || col == LEFT_ESCAPE_POSITION || col == RIGTH_ESCAPE_POSITION)
+            if (this.row == TOP_ESCAPE_POSITION || this.row == BOTTOM_ESCAPE_POSITION
+                || this.col == LEFT_ESCAPE_POSITION || this.col == RIGTH_ESCAPE_POSITION)
             {
                 isWinner = true;
             }
@@ -108,8 +110,8 @@
 
         public bool IsValidPosition()
         {
-            bool yCoordinatesInRange = (row <= 6 && row >= 0);
-            bool xCoordinatesInRange = (col >= 0 && col <= 6);
+            bool yCoordinatesInRange = (this.row <= 6 && this.row >= 0);
+            bool xCoordinatesInRange = (this.col >= 0 && this.col <= 6);
 
             if (xCoordinatesInRange && yCoordinatesInRange)
             {

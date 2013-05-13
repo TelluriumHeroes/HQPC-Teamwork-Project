@@ -18,6 +18,7 @@ namespace TeamTellurium.Labyrinth
             {
                 return false;
             }
+
             playerCurrentPosition.IsMoved(nextDirection);
 
             int[,] fieldGrid = playfield.LabyrinthGrid;

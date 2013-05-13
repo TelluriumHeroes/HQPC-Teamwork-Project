@@ -37,8 +37,10 @@ namespace TeamTellurium.Labyrinth
                         }
                     }
                 }
+
                 fieldAsString.AppendLine();
             }
+
             Console.WriteLine(fieldAsString.ToString());
 
             //For testing purpose only

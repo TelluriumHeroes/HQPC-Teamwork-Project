@@ -12,5 +12,5 @@ namespace TeamTellurium.Labyrinth
         Left, 
         Down, 
         Right 
-    };
+    }
 }
