@@ -29,7 +29,7 @@ namespace TeamTellurium.Labyrinth
 
         public bool IsWinning()
         {
-            return PlayerPosition.IsWinning();
+            return PlayerPosition.IsWinner();
         }
 
         #region GameFieldStartInitValues
@@ -82,13 +82,13 @@ namespace TeamTellurium.Labyrinth
             Directions nextDirection = new Directions();
             Position currentPosition = new Position();
 
-            while (!currentPosition.IsWinning())
+            while (!currentPosition.IsWinner())
             {
                 int randomNumber = RandomNumberGenerator.Next(-1, 4);
                 nextDirection = (Directions)(randomNumber);
                 if (!MovesChecker.IsValidMove(this, nextDirection))
                 {
-                    currentPosition.Move(nextDirection);
+                    currentPosition.IsMoved(nextDirection);
 
                     this.LabyrinthGrid[currentPosition.Row, currentPosition.Col] = 0;
                 }

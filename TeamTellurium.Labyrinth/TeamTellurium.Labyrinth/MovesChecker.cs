@@ -14,11 +14,11 @@ namespace TeamTellurium.Labyrinth
             int playerCurrentCol = playfield.PlayerPosition.Col;
             Position playerCurrentPosition = new Position(playerCurrentRow, playerCurrentCol);
             
-            if (playerCurrentPosition.IsWinning())
+            if (playerCurrentPosition.IsWinner())
             {
                 return false;
             }
-            playerCurrentPosition.Move(nextDirection);
+            playerCurrentPosition.IsMoved(nextDirection);
 
             int[,] fieldGrid = playfield.LabyrinthGrid;
             return IsValidPosition(fieldGrid, playerCurrentPosition);

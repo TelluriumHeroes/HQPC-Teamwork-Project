@@ -1,21 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+    using System.Linq;
+
     public class Position
     {
-        private const int INITIAL_ROW = 3;
-        private const int INITIAL_COL = 3;
+        private const int Y_INITIAL_POSITION = 3;
+        private const int X_INITIAL_POSITION = 3;
+        private const int MOVING_STEP = 1;
+        private const int LEFT_ESCAPE_POSITION = 0;
+        private const int RIGTH_ESCAPE_POSITION = 6;
+        private const int TOP_ESCAPE_POSITION = 0;
+        private const int BOTTOM_ESCAPE_POSITION = 6;
         private int row;
         private int col;
-        
+
         public int Row
         {
-            get 
+            get
             {
                 return this.row;
             }
@@ -24,6 +26,10 @@ namespace TeamTellurium.Labyrinth
                 if (value > 0)
                 {
                     this.Row = value;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Can't go outside of the bounds of the playfield");
                 }
             }
         }
@@ -40,13 +46,17 @@ namespace TeamTellurium.Labyrinth
                 {
                     this.Col = value;
                 }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Can't go outside of the bounds of the playfield");
+                }
             }
         }
 
         public Position()
         {
-            this.row = INITIAL_ROW;
-            this.col = INITIAL_COL;
+            this.row = Y_INITIAL_POSITION;
+            this.col = X_INITIAL_POSITION;
         }
 
         public Position(int xCoordinate, int yCoordinate)
@@ -55,38 +65,40 @@ namespace TeamTellurium.Labyrinth
             this.col = yCoordinate;
         }
 
-        public bool Move(Directions direction)
+        public bool IsMoved(Directions direction)
         {
-            if (IsWinning())
-            { 
-                return false; 
-            
+            if (IsWinner())
+            {
+                return false;
             }
+
             switch (direction)
             {
                 case Directions.Left:
-                    this.col -= 1;
+                    this.col -= MOVING_STEP;
                     break;
                 case Directions.Up:
-                    this.row -= 1;
+                    this.row -= MOVING_STEP;
                     break;
                 case Directions.Right:
-                    this.col += 1;
+                    this.col += MOVING_STEP;
                     break;
                 case Directions.Down:
-                    this.row += 1;
+                    this.row += MOVING_STEP;
                     break;
                 default:
                     return false;
             }
+
             return true;
         }
 
-        public bool IsWinning()
+        public bool IsWinner()
         {
             bool isWinner = false;
 
-            if (row == 0 || row == 6 || col == 0 || col == 6)
+            if (row == TOP_ESCAPE_POSITION || row == BOTTOM_ESCAPE_POSITION
+                || col == LEFT_ESCAPE_POSITION || col == RIGTH_ESCAPE_POSITION)
             {
                 isWinner = true;
             }
@@ -96,7 +108,10 @@ namespace TeamTellurium.Labyrinth
 
         public bool IsValidPosition()
         {
-            if (row <= 6 && row >= 0 && col >= 0 && col <= 6)
+            bool yCoordinatesInRange = (row <= 6 && row >= 0);
+            bool xCoordinatesInRange = (col >= 0 && col <= 6);
+
+            if (xCoordinatesInRange && yCoordinatesInRange)
             {
                 return true;
             }
@@ -108,8 +123,8 @@ namespace TeamTellurium.Labyrinth
 
         public void MakeStarting()
         {
-            this.row = INITIAL_ROW;
-            this.col = INITIAL_COL;
+            this.row = Y_INITIAL_POSITION;
+            this.col = X_INITIAL_POSITION;
         }
     }
 }
