@@ -11,7 +11,9 @@ namespace TeamTellurium.Labyrinth.Tests
         {
             ScoreBoard scoreboard = new ScoreBoard();
             string actualScoreboard = scoreboard.ShowScoreboard().ToString();
+            
             string expectedScoreboard = "Scoreboard is empty. Congratulations, you will be the first who will play that game!";
+
             Assert.AreEqual(expectedScoreboard, actualScoreboard);
         }
 
@@ -19,7 +21,17 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestShowScoreboard_AddedOnePlayer()
         {
             ScoreBoard scoreboard = new ScoreBoard();
-            string actualScoreboard = scoreboard.ShowScoreboard().ToString();
+            scoreboard.AddPlayerInScoreboard("Plamen", 3);
+            bool isTrueThatOnePlayerIsAdded = scoreboard.ShowScoreboard().Length == 1;
+
+            foreach (var item in scoreboard.ShowScoreboard())
+            {
+                scoreboard.ShowScoreboard().Remove(item);
+            }
+
+            Assert.IsTrue(isTrueThatOnePlayerIsAdded);
+
+          
         }
     }
 }

@@ -30,17 +30,15 @@
             return scoreboardResult.ToString();
         }
 
-        public SortedDictionary<string, int> AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
+        public void AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
         {
-            SortedDictionary<string, int> nameAndScore = new SortedDictionary<string, int>();
-            nameAndScore.Add(playerName, playerScore);
+            SortedDictionary<string, int> playerNameAndScore = new SortedDictionary<string, int>();
+            playerNameAndScore.Add(playerName, playerScore);
 
-            foreach (KeyValuePair<string, int> topScorers in nameAndScore)
+            foreach (KeyValuePair<string, int> topScorers in playerNameAndScore)
             {
                 File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
             }
-
-            return nameAndScore;
         }
 
         private List<KeyValuePair<string, int>> ReadScoreboardFile()

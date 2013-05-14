@@ -6,12 +6,6 @@ namespace TeamTellurium.Labyrinth.Tests
     [TestClass]
     public class PositionTests
     {
-        [TestMethod]
-        public void TestStartPosition_()
-        {
-
-        }
-
         /// <summary>
         /// When position.Row = 0, then this means that player has escaped
         /// from the left side of the labyrinth and is winner.
@@ -150,7 +144,36 @@ namespace TeamTellurium.Labyrinth.Tests
             actualPosition.MoveAtDirection(Direction.Right);
 
             Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
-           
+        }
+
+        [TestMethod]
+        public void TestMoveAtDirection_Left()
+        {
+            Position expectedPosition = new Position(3, 2);
+            Position actualPosition = new Position(3, 3);
+            actualPosition.MoveAtDirection(Direction.Left);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+        }
+
+        [TestMethod]
+        public void TestMoveAtDirection_Up()
+        {
+            Position expectedPosition = new Position(3, 2);
+            Position actualPosition = new Position(4, 3);
+            actualPosition.MoveAtDirection(Direction.Up);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
+        }
+
+        [TestMethod]
+        public void TestMoveAtDirection_Down()
+        {
+            Position expectedPosition = new Position(5, 2);
+            Position actualPosition = new Position(4, 3);
+            actualPosition.MoveAtDirection(Direction.Down);
+
+            Assert.AreEqual(expectedPosition.Row, actualPosition.Row);
         }
     }
 }
