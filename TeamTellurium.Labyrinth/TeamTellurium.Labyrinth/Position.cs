@@ -26,7 +26,7 @@
             {
                 if (value > 0)
                 {
-                    this.Row = value;
+                    this.row = value;
                 }
                 else
                 {
@@ -46,7 +46,7 @@
             {
                 if (value > 0)
                 {
-                    this.Col = value;
+                    this.col = value;
                 }
                 else
                 {
