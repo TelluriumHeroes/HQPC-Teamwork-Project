@@ -19,8 +19,8 @@ namespace TeamTellurium.Labyrinth
 
         public Playfield(int[,] customLabyrinth)
         {
-            if (customLabyrinth.GetLength(0) > labyrinthGridRows ||
-                customLabyrinth.GetLength(1) > labyrinthGridCols)
+            if (customLabyrinth.GetLength(0) != labyrinthGridRows ||
+                customLabyrinth.GetLength(1) != labyrinthGridCols)
             {
                 throw new IndexOutOfRangeException(
                     String.Format("The index of the custom labyrinth must not be bigger than rows = {0} and cols = {1}! Your input: row = {0} and col = {1}",
