@@ -2,15 +2,16 @@
 {
     using System;
     using System.Linq;
+    using System.Text;
 
     public class LabyrinthMain
     {
         public static void Main(string[] args)
         {
-            Playfield playfield = new Playfield();
-            GameEngine engine = new GameEngine(playfield);
-            AssignEvents(engine, engine.UserInput);
-            engine.Run();
+            //Playfield playfield = new Playfield();
+            //GameEngine engine = new GameEngine(playfield);
+            //AssignEvents(engine, engine.UserInput);
+            //engine.Run();
         }
 
         public static void AssignEvents(GameEngine engine, ConsoleInput movement)
