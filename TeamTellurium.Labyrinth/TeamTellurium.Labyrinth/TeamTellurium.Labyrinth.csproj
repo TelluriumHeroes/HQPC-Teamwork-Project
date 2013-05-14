@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Directions.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="IConsoleInput.cs" />
     <Compile Include="ConsoleInput.cs" />

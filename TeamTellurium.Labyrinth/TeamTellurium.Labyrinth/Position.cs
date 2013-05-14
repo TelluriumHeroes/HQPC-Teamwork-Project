@@ -5,13 +5,13 @@
 
     public class Position
     {
-        private const int Y_INITIAL_POSITION = 3;
-        private const int X_INITIAL_POSITION = 3;
-        private const int MOVING_STEP = 1;
-        private const int LEFT_ESCAPE_POSITION = 0;
-        private const int RIGTH_ESCAPE_POSITION = 6;
-        private const int TOP_ESCAPE_POSITION = 0;
-        private const int BOTTOM_ESCAPE_POSITION = 6;
+        private const byte ROW_INITIAL_POSITION = 3;
+        private const byte COL_INITIAL_POSITION = 3;
+        private const byte MOVING_STEP = 1;
+        private const byte LEFT_ESCAPE_POSITION = 0;
+        private const byte RIGTH_ESCAPE_POSITION = 6;
+        private const byte TOP_ESCAPE_POSITION = 0;
+        private const byte BOTTOM_ESCAPE_POSITION = 6;
         private int row;
         private int col;
 
@@ -24,7 +24,7 @@
 
             set
             {
-                if (value > 0)
+                if (TOP_ESCAPE_POSITION <= value && value <= BOTTOM_ESCAPE_POSITION)
                 {
                     this.row = value;
                 }
@@ -44,7 +44,7 @@
 
             set
             {
-                if (value > 0)
+                if (LEFT_ESCAPE_POSITION <= value && value <= RIGTH_ESCAPE_POSITION)
                 {
                     this.col = value;
                 }
@@ -57,31 +57,31 @@
 
         public Position()
         {
-            this.row = Y_INITIAL_POSITION;
-            this.col = X_INITIAL_POSITION;
+            this.row = ROW_INITIAL_POSITION;
+            this.col = COL_INITIAL_POSITION;
         }
 
-        public Position(int xCoordinate, int yCoordinate)
+        public Position(int row, int col)
         {
-            this.row = xCoordinate;
-            this.col = yCoordinate;
+            this.Row = row;
+            this.Col = col;
         }
 
-        public void MoveAtDirection(Directions direction)
+        public void MoveAtDirection(Direction direction)
         {
             switch (direction)
             {
-                case Directions.Left:
-                    this.col -= MOVING_STEP;
+                case Direction.Left:
+                    this.Col -= MOVING_STEP;
                     break;
-                case Directions.Up:
-                    this.row -= MOVING_STEP;
+                case Direction.Up:
+                    this.Row -= MOVING_STEP;
                     break;
-                case Directions.Right:
-                    this.col += MOVING_STEP;
+                case Direction.Right:
+                    this.Col += MOVING_STEP;
                     break;
                 default:
-                    this.row += MOVING_STEP;
+                    this.Row += MOVING_STEP;
                     break;
             }
         }
@@ -99,8 +99,8 @@
 
         public void SetStartPosition()
         {
-            this.row = Y_INITIAL_POSITION;
-            this.col = X_INITIAL_POSITION;
+            this.row = ROW_INITIAL_POSITION;
+            this.col = COL_INITIAL_POSITION;
         }
     }
 }

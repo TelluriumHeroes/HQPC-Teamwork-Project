@@ -49,13 +49,13 @@ namespace TeamTellurium.Labyrinth
 
         public void EnsureClearPath()
         {
-            Directions nextDirection = new Directions();
+            Direction nextDirection = new Direction();
             Position currentPosition = new Position();
 
             while (!currentPosition.IsWinner())
             {
                 int randomNumber = randomNumberGenerator.Next(-1, 4);
-                nextDirection = (Directions)(randomNumber);
+                nextDirection = (Direction)(randomNumber);
                 if (!MovesChecker.IsValidMove(this, nextDirection))
                 {
                     currentPosition.MoveAtDirection(nextDirection);

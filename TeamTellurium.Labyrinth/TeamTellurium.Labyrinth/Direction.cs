@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
 {
-    public enum Directions
+    public enum Direction
     {   
         Up, 
         Left, 

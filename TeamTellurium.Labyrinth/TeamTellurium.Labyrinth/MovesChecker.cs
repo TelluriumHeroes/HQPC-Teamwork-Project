@@ -8,7 +8,7 @@ namespace TeamTellurium.Labyrinth
 {
     public static class MovesChecker
     {
-        public static bool IsValidMove(Playfield playfield, Directions nextDirection)
+        public static bool IsValidMove(Playfield playfield, Direction nextDirection)
         {
             int playerCurrentRow = playfield.PlayerPosition.Row;
             int playerCurrentCol = playfield.PlayerPosition.Col;
