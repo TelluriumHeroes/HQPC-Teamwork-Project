@@ -166,5 +166,34 @@ namespace TeamTellurium.Labyrinth.Tests
             bool actual = MovesChecker.IsValidMove(playfield, directionDown);
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestIsValidMove_CannotMoveDown()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 1, 1, 0, 1, 1, 1},
+                            {0, 0, 0, 0, 0, 0, 1},
+                            {1, 0, 1, 0, 1, 0, 1},
+                            {1, 0, 1, 0, 1, 1, 0},
+                            {0, 1, 1, 1, 1, 1, 0},
+                            {0, 0, 1, 0, 0, 0, 1},
+                            {1, 0, 0, 0, 0, 0, 0}
+                        };
+
+            Playfield playfield = new Playfield(labyrinthGrid);
+
+            //Moving playerPosition at row=5 and col=2
+            playfield.PlayerPosition.MoveAtDirection(Direction.Up);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Up);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Down);
+
+            Direction directionDown = Direction.Down;
+            bool expected = false;
+            bool actual = MovesChecker.IsValidMove(playfield, directionDown);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
