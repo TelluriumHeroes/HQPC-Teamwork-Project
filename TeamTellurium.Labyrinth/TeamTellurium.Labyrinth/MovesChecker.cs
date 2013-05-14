@@ -19,7 +19,7 @@ namespace TeamTellurium.Labyrinth
                 return false;
             }
 
-            playerCurrentPosition.IsMoved(nextDirection);
+            playerCurrentPosition.MoveAtDirection(nextDirection);
 
             int[,] fieldGrid = playfield.LabyrinthGrid;
             return IsValidPosition(fieldGrid, playerCurrentPosition);
@@ -27,7 +27,13 @@ namespace TeamTellurium.Labyrinth
 
         private static bool IsValidPosition(int[,] fieldGrid, Position currentPosition)
         {
-            return fieldGrid[currentPosition.Row, currentPosition.Col] == 0 && currentPosition.IsValidPosition();
+            int rows = fieldGrid.GetLength(0);
+            int cols = fieldGrid.GetLength(1);
+            bool isRowInRange = (currentPosition.Row <= rows && currentPosition.Row >= 0);
+            bool isColInRange = (currentPosition.Col >= 0 && currentPosition.Col <= cols);
+            bool isCellEmpty = fieldGrid[currentPosition.Row, currentPosition.Col] == 0;
+
+            return isCellEmpty && (isRowInRange && isColInRange);
         }
     }
 }

@@ -55,7 +55,7 @@ namespace TeamTellurium.Labyrinth
                 nextDirection = (Directions)(randomNumber);
                 if (!MovesChecker.IsValidMove(this, nextDirection))
                 {
-                    currentPosition.IsMoved(nextDirection);
+                    currentPosition.MoveAtDirection(nextDirection);
 
                     this.LabyrinthGrid[currentPosition.Row, currentPosition.Col] = 0;
                 }

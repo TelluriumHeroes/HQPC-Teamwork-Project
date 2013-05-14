@@ -86,22 +86,22 @@ namespace TeamTellurium.Labyrinth
 
         public void MoveLeft()
         {
-            Playfield.PlayerPosition.IsMoved(Directions.Left);
+            Playfield.PlayerPosition.MoveAtDirection(Directions.Left);
         }
 
         public void MoveRight()
         {
-            Playfield.PlayerPosition.IsMoved(Directions.Right);
+            Playfield.PlayerPosition.MoveAtDirection(Directions.Right);
         }
 
         public void MoveUp()
         {
-            Playfield.PlayerPosition.IsMoved(Directions.Up);
+            Playfield.PlayerPosition.MoveAtDirection(Directions.Up);
         }
 
         public void MoveDown()
         {
-            Playfield.PlayerPosition.IsMoved(Directions.Down);
+            Playfield.PlayerPosition.MoveAtDirection(Directions.Down);
         }
 
         public void QuitGame()

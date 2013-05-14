@@ -67,13 +67,8 @@
             this.col = yCoordinate;
         }
 
-        public bool IsMoved(Directions direction)
+        public void MoveAtDirection(Directions direction)
         {
-            if (this.IsWinner())
-            {
-                return false;
-            }
-
             switch (direction)
             {
                 case Directions.Left:
@@ -85,42 +80,21 @@
                 case Directions.Right:
                     this.col += MOVING_STEP;
                     break;
-                case Directions.Down:
+                default:
                     this.row += MOVING_STEP;
                     break;
-                default:
-                    return false;
             }
-
-            return true;
         }
 
         public bool IsWinner()
         {
-            bool isWinner = false;
-
             if (this.row == TOP_ESCAPE_POSITION || this.row == BOTTOM_ESCAPE_POSITION
                 || this.col == LEFT_ESCAPE_POSITION || this.col == RIGTH_ESCAPE_POSITION)
             {
-                isWinner = true;
-            }
-
-            return isWinner;
-        }
-
-        public bool IsValidPosition()
-        {
-            bool yCoordinatesInRange = (this.row <= 6 && this.row >= 0);
-            bool xCoordinatesInRange = (this.col >= 0 && this.col <= 6);
-
-            if (xCoordinatesInRange && yCoordinatesInRange)
-            {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void StartPosition()
