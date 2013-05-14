@@ -32,7 +32,7 @@ namespace TeamTellurium.Labyrinth.Tests
             expectedOutput.AppendLine("X-X--XX");
             expectedOutput.AppendLine("X--X-X-");
             
-            Assert.AreEqual(actualOutput, expectedOutput.ToString());
+            Assert.AreSame(actualOutput, expectedOutput.ToString());
         }
 
         [TestMethod]

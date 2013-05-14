@@ -1,17 +1,16 @@
 ﻿namespace TeamTellurium.Labyrinth
 {
     using System;
-    using System.Linq;
 
     public class Messages
     {
-        public string InvalidMove()
+        public string InvalidMoveMessage()
         {
             string invalidMove = "Invalid move!";
             return invalidMove;
         }
 
-        public string MoveInstructions()
+        public string MoveInstructionsMessage()
         {
             string moveInstructions = "Enter your move (L=left, R=right, U=up, D=down): ";
             return moveInstructions;
@@ -34,7 +33,7 @@
             return congratulationsMessage;
         }
 
-        public string PlayingInstructions()
+        public string PlayingInstructionsMessage()
         {
             string playInstructions = "You are playing \"Labyrinth\" game. Please try to escape. Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.";
             return playInstructions;

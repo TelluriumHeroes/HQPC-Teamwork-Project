@@ -56,7 +56,7 @@ namespace TeamTellurium.Labyrinth
             messages.NewLine();
 
             Console.SetCursorPosition(0, 11);
-            Console.Write(messages.MoveInstructions());
+            Console.Write(messages.MoveInstructionsMessage());
         }
         
         public static void RenderWinInfo(Messages messages, int score)

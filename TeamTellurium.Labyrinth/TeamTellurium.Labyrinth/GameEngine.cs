@@ -79,7 +79,7 @@ namespace TeamTellurium.Labyrinth
             }
             else
             {   
-                Console.WriteLine(Messages.InvalidMove());
+                Console.WriteLine(Messages.InvalidMoveMessage());
                 Thread.Sleep(500);
             }
         }

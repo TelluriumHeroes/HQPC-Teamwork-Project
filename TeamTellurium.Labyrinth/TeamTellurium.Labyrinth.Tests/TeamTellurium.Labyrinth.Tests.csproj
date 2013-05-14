@@ -55,6 +55,8 @@
     <Compile Include="RendererTests.cs" />
     <Compile Include="ScoreBoardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PositionTests.cs" />
+    <Compile Include="MessagesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TeamTellurium.Labyrinth\TeamTellurium.Labyrinth.csproj">

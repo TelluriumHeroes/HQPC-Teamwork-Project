@@ -123,7 +123,7 @@
             }
         }
 
-        public void MakeStarting()
+        public void StartPosition()
         {
             this.row = Y_INITIAL_POSITION;
             this.col = X_INITIAL_POSITION;
