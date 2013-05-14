@@ -64,18 +64,6 @@ namespace TeamTellurium.Labyrinth
 
         #endregion
 
-        private void SetStartRenderingPosition()
-        {
-            int startRow = 3;
-            Console.SetCursorPosition(0, startRow);
-        }
-
-        //TODO: Implement!
-        public void ResetField()
-        {
-            throw new NotImplementedException();
-        }
-
         private void InitializeRandomValues()
         {
             for (int row = 0; row < labyrinthGridRows; row++)

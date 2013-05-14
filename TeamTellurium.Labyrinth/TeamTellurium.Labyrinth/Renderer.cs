@@ -28,12 +28,9 @@ namespace TeamTellurium.Labyrinth
                         {
                             fieldAsString.Append("-");
                         }
-                        else
+                        else //if (labyrinthGrid[row, col] == 1)
                         {
-                            if (labyrinthGrid[row, col] == 1)
-                            {
-                                fieldAsString.Append("X");
-                            }
+                            fieldAsString.Append("X");
                         }
                     }
                 }
