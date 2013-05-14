@@ -7,6 +7,7 @@
     {
         public static void Main(string[] args)
         {
+
             Playfield playfield = new Playfield();
             GameEngine engine = new GameEngine(playfield);
             AssignEvents(engine, engine.UserInput);

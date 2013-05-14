@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
 {
@@ -16,13 +12,20 @@ namespace TeamTellurium.Labyrinth
         public Position PlayerPosition { get; private set; }
 
         public Playfield()
-        {
+        {   
             this.LabyrinthGrid = new int[labyrinthGridRows, labyrinthGridCols];
             this.PlayerPosition = new Position();
         }
 
         public Playfield(int[,] customLabyrinth)
         {
+            if (customLabyrinth.GetLength(0) > labyrinthGridRows ||
+                customLabyrinth.GetLength(1) > labyrinthGridCols)
+            {
+                throw new IndexOutOfRangeException(
+                    String.Format("The index of the custom labyrinth must not be bigger than rows = {0} and cols = {1}", 
+                            Playfield.labyrinthGridRows, Playfield.labyrinthGridCols));
+            }
             this.LabyrinthGrid = customLabyrinth;
             this.PlayerPosition = new Position();
         }
@@ -32,11 +35,11 @@ namespace TeamTellurium.Labyrinth
             return this.PlayerPosition.IsWinner();
         }
 
-        #region GameFieldStartInitValues
+        #region StartInitValues
 
         public void InitializeField()
         {
-            this.PlayerPosition = new Position();
+            this.PlayerPosition.SetStartPosition();
             this.IntializeEmptyField();
             //Player initial position
             this.LabyrinthGrid[3, 3] = 0;
@@ -61,8 +64,6 @@ namespace TeamTellurium.Labyrinth
                 }
             }
         }
-
-        #endregion
 
         private void InitializeRandomValues()
         {
@@ -96,5 +97,7 @@ namespace TeamTellurium.Labyrinth
                 }
             }
         }
+
+        #endregion
     }
 }

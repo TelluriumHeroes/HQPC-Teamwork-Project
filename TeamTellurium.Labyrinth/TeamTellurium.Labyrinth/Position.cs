@@ -97,7 +97,7 @@
             return false;
         }
 
-        public void StartPosition()
+        public void SetStartPosition()
         {
             this.row = Y_INITIAL_POSITION;
             this.col = X_INITIAL_POSITION;
