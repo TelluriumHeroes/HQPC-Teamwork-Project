@@ -7,8 +7,22 @@ namespace TeamTellurium.Labyrinth.Tests
     public class PlayfieldTests
     {
         [TestMethod]
-        public void TestMethod1()
+        [ExpectedException(typeof(IndexOutOfRangeException))]
+        public void TestPlayfield_CustomLabyrinthRowsOutOfRange()
         {
+            int[,] labyrinthGrid = new int[8, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 1},
+                            {1, 1, 1, 1, 1, 1, 1},
+                            {0, 0, 0, 0, 0, 0, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 0, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 0, 0, 0, 0, 0},
+                            {1, 0, 1, 0, 0, 1, 1}
+                        };
+
+            Playfield playfield = new Playfield(labyrinthGrid);
         }
     }
 }

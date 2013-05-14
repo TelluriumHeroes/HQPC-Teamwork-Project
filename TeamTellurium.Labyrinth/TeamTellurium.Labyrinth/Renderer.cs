@@ -5,12 +5,10 @@ namespace TeamTellurium.Labyrinth
 {
     public static class Renderer
     {
-        public static string RenderField(Playfield playfield)
+        public static string RenderField(int[,] gamefieldGrid, int currentPosRow, int currentPosCol)
         {
-            Position playerPosition = playfield.PlayerPosition;
-            int[,] labyrinthGrid = playfield.LabyrinthGrid;
-            int rows = labyrinthGrid.GetLength(0);
-            int cols = labyrinthGrid.GetLength(1);
+            int rows = gamefieldGrid.GetLength(0);
+            int cols = gamefieldGrid.GetLength(1);
 
             StringBuilder fieldAsString = new StringBuilder();
 
@@ -18,13 +16,13 @@ namespace TeamTellurium.Labyrinth
             {
                 for (int col = 0; col < cols; col++)
                 {
-                    if (playerPosition.Row == row && playerPosition.Col == col)
+                    if (currentPosRow == row && currentPosCol == col)
                     {
                         fieldAsString.Append("*");
                     }
                     else
                     {
-                        if (labyrinthGrid[row, col] == 0)
+                        if (gamefieldGrid[row, col] == 0)
                         {
                             fieldAsString.Append("-");
                         }
@@ -46,20 +44,18 @@ namespace TeamTellurium.Labyrinth
             return fieldAsString.ToString();
         }
 
-        public static void RenderInfo(Messages messages)
+        public static void RenderInfo(string welcomeMessage, string moveInstructions)
         {   
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine(messages.WelcomeMessage());
-            messages.NewLine();
-
+            Console.WriteLine(welcomeMessage + Environment.NewLine);
             Console.SetCursorPosition(0, 11);
-            Console.Write(messages.MoveInstructionsMessage());
+            Console.Write(moveInstructions);
         }
         
-        public static void RenderWinInfo(Messages messages, int score)
+        public static void RenderWinInfo(string winMessage)
         {
             Console.WriteLine();
-            Console.Write(messages.WinnerCongratsMessage(score));
+            Console.Write(Environment.NewLine + winMessage);
         }
 
         public static void RenderScoreboard(string score)

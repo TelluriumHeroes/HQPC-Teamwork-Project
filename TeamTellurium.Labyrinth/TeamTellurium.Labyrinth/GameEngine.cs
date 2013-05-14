@@ -59,8 +59,11 @@ namespace TeamTellurium.Labyrinth
         private void RenderAll()
         {
             Renderer.ResetField();
-            Renderer.RenderInfo(this.Messages);
-            Renderer.RenderField(this.Playfield);
+
+            string welcomeMessage = this.Messages.WelcomeMessage();
+            string moveInstructionsMessage = this.Messages.MoveInstructionsMessage();
+            Renderer.RenderInfo(welcomeMessage, moveInstructionsMessage);
+            Renderer.RenderField(this.Playfield.LabyrinthGrid, this.Playfield.PlayerPosition.Row, this.Playfield.PlayerPosition.Col);
         }
 
         public void ShowTopResults()
@@ -113,8 +116,8 @@ namespace TeamTellurium.Labyrinth
         {
             string name;
             do
-            {
-                Renderer.RenderWinInfo(this.Messages, this.Score);
+            {   
+                Renderer.RenderWinInfo(this.Messages.WinnerCongratsMessage(this.Score));
                 name = Console.ReadLine();
             }
             while (string.IsNullOrEmpty(name));

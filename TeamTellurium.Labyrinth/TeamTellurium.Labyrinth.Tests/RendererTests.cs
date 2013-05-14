@@ -22,7 +22,9 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
             Playfield playfield = new Playfield(labyrinthGrid);
 
-            string actualOutput = Renderer.RenderField(playfield);
+            string actualOutput = Renderer.RenderField(playfield.LabyrinthGrid, 
+                playfield.PlayerPosition.Row, playfield.PlayerPosition.Col);
+
             StringBuilder expectedOutput = new StringBuilder();
             expectedOutput.AppendLine("--XX-XX");
             expectedOutput.AppendLine("XXX---X");
@@ -32,7 +34,7 @@ namespace TeamTellurium.Labyrinth.Tests
             expectedOutput.AppendLine("X-X--XX");
             expectedOutput.AppendLine("X--X-X-");
             
-            Assert.AreSame(actualOutput, expectedOutput.ToString());
+            Assert.AreSame(actualOutput, expectedOutput.ToString(), actualOutput.ToString());
         }
 
         [TestMethod]
@@ -58,7 +60,9 @@ namespace TeamTellurium.Labyrinth.Tests
             playfield.PlayerPosition.MoveAtDirection(Directions.Down);
             playfield.PlayerPosition.MoveAtDirection(Directions.Right);
 
-            string actualOutput = Renderer.RenderField(playfield);
+            string actualOutput = Renderer.RenderField(playfield.LabyrinthGrid,
+                playfield.PlayerPosition.Row, playfield.PlayerPosition.Col);
+
             StringBuilder expectedOutput = new StringBuilder();
             expectedOutput.AppendLine("--XX-XX");
             expectedOutput.AppendLine("XXX---X");
