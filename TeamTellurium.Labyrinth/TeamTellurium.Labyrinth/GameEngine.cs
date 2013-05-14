@@ -73,7 +73,7 @@ namespace TeamTellurium.Labyrinth
             Console.ReadKey();
         }
 
-        public void MoveAtDirection(Directions direction, Action MovementAction)
+        public void MoveAtDirection(Direction direction, Action MovementAction)
         {
             if (MovesChecker.IsValidMove(Playfield, direction))
             {
@@ -89,22 +89,22 @@ namespace TeamTellurium.Labyrinth
 
         public void MoveLeft()
         {
-            Playfield.PlayerPosition.MoveAtDirection(Directions.Left);
+            Playfield.PlayerPosition.MoveAtDirection(Direction.Left);
         }
 
         public void MoveRight()
         {
-            Playfield.PlayerPosition.MoveAtDirection(Directions.Right);
+            Playfield.PlayerPosition.MoveAtDirection(Direction.Right);
         }
 
         public void MoveUp()
         {
-            Playfield.PlayerPosition.MoveAtDirection(Directions.Up);
+            Playfield.PlayerPosition.MoveAtDirection(Direction.Up);
         }
 
         public void MoveDown()
         {
-            Playfield.PlayerPosition.MoveAtDirection(Directions.Down);
+            Playfield.PlayerPosition.MoveAtDirection(Direction.Down);
         }
 
         public void QuitGame()

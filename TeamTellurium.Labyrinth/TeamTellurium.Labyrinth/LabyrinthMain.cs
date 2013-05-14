@@ -18,22 +18,22 @@
         {
             movement.OnWriteL += (sender, eventInfo) =>
             {
-                engine.MoveAtDirection(Directions.Left, engine.MoveLeft);
+                engine.MoveAtDirection(Direction.Left, engine.MoveLeft);
             };
 
             movement.OnWriteR += (sender, eventInfo) =>
             {
-                engine.MoveAtDirection(Directions.Right, engine.MoveRight);
+                engine.MoveAtDirection(Direction.Right, engine.MoveRight);
             };
 
             movement.OnWriteU += (sender, eventInfo) =>
             {
-                engine.MoveAtDirection(Directions.Up, engine.MoveUp);
+                engine.MoveAtDirection(Direction.Up, engine.MoveUp);
             };
 
             movement.OnWriteD += (sender, eventInfo) =>
             {
-                engine.MoveAtDirection(Directions.Down, engine.MoveDown);
+                engine.MoveAtDirection(Direction.Down, engine.MoveDown);
             };
 
             movement.OnWriteTop += (sender, eventInfo) =>

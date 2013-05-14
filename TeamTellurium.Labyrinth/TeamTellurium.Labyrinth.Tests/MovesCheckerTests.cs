@@ -22,7 +22,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionRight = Directions.Right;
+            Direction directionRight = Direction.Right;
 
             bool expected = true;
             bool actual = MovesChecker.IsValidMove(playfield, directionRight);
@@ -44,7 +44,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionRight = Directions.Right;
+            Direction directionRight = Direction.Right;
 
             bool expected = false;
             bool actual = MovesChecker.IsValidMove(playfield, directionRight);
@@ -66,7 +66,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionLeft = Directions.Left;
+            Direction directionLeft = Direction.Left;
 
             bool expected = true;
             bool actual = MovesChecker.IsValidMove(playfield, directionLeft);
@@ -88,7 +88,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionLeft = Directions.Left;
+            Direction directionLeft = Direction.Left;
 
             bool expected = false;
             bool actual = MovesChecker.IsValidMove(playfield, directionLeft);
@@ -110,7 +110,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionUp = Directions.Up;
+            Direction directionUp = Direction.Up;
 
             bool expected = true;
             bool actual = MovesChecker.IsValidMove(playfield, directionUp);
@@ -132,7 +132,7 @@ namespace TeamTellurium.Labyrinth.Tests
                         };
 
             Playfield playfield = new Playfield(labyrinthGrid);
-            Directions directionUp = Directions.Up;
+            Direction directionUp = Direction.Up;
 
             bool expected = false;
             bool actual = MovesChecker.IsValidMove(playfield, directionUp);
@@ -156,13 +156,13 @@ namespace TeamTellurium.Labyrinth.Tests
             Playfield playfield = new Playfield(labyrinthGrid);
 
             //Moving playerPosition at row=5 and col=2
-            playfield.PlayerPosition.MoveAtDirection(Directions.Up);
-            playfield.PlayerPosition.MoveAtDirection(Directions.Up);
-            playfield.PlayerPosition.MoveAtDirection(Directions.Right);
-            playfield.PlayerPosition.MoveAtDirection(Directions.Right);
-            playfield.PlayerPosition.MoveAtDirection(Directions.Down);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Up);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Up);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Down);
 
-            Directions directionDown = Directions.Down;
+            Direction directionDown = Direction.Down;
             bool expected = true;
             bool actual = MovesChecker.IsValidMove(playfield, directionDown);
             Assert.AreEqual(expected, actual);
