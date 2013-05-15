@@ -10,7 +10,6 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestPlayfield_CustomLabyrinthRowsColsInRange()
         {
             int[,] labyrinthGrid = new int[7, 7];
-
             Playfield playfield = new Playfield(labyrinthGrid);
             Assert.AreSame(playfield.LabyrinthGrid, labyrinthGrid);
         }
@@ -20,7 +19,6 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestPlayfield_CustomLabyrinthLessRows()
         {
             int[,] labyrinthGrid = new int[4, 7];
-
             Playfield playfield = new Playfield(labyrinthGrid);
         }
 
@@ -38,7 +36,6 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestPlayfield_CustomLabyrinthLessCols()
         {
             int[,] labyrinthGrid = new int[8, 3];
-
             Playfield playfield = new Playfield(labyrinthGrid);
         }
 
@@ -47,7 +44,6 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestPlayfield_CustomLabyrinthMoreCols()
         {
             int[,] labyrinthGrid = new int[7, 8];
-
             Playfield playfield = new Playfield(labyrinthGrid);
         }
 
@@ -56,8 +52,14 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestPlayfield_CustomLabyrinthMoreRowsAndCols()
         {
             int[,] labyrinthGrid = new int[12, 8];
-
             Playfield playfield = new Playfield(labyrinthGrid);
+        }
+
+        [TestMethod]
+        public void TestPlayfield_CustomPositionInRange()
+        {
+            Position customPosition = new Position(4, 5);
+            Playfield playfield = new Playfield(customPosition);
         }
 
         [TestMethod]

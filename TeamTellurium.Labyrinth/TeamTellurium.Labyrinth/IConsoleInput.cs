@@ -8,6 +8,6 @@ namespace TeamTellurium.Labyrinth
         event EventHandler OnWriteR;
         event EventHandler OnWriteU;
         event EventHandler OnWriteD;
-        void ProcessInput();
+        void ProcessInput(string input);
     }
 }

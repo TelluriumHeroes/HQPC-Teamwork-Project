@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
 {   
@@ -15,11 +11,9 @@ namespace TeamTellurium.Labyrinth
         public event EventHandler OnWriteR;
         public event EventHandler OnWriteU;
         public event EventHandler OnWriteD;
-
-        public void ProcessInput()
+        
+        public void ProcessInput(string input)
         {
-            string input = Console.ReadLine();
-
             if (input == "top")
             {
                 if (this.OnWriteTop != null)

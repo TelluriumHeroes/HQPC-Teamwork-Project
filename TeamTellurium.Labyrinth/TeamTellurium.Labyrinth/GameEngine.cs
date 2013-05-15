@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TeamTellurium.Labyrinth
 {
@@ -14,8 +10,8 @@ namespace TeamTellurium.Labyrinth
         private Messages Messages { get; set; }
         private ScoreBoard Scoreboard { get; set; }
         
-        private int Score { get; set; }
-        private bool HasGameQuit { get; set; }
+        public int Score { get; private set; }
+        public bool HasGameQuit { get; private set; }
 
         public GameEngine(Playfield playfield)
         {
@@ -24,6 +20,7 @@ namespace TeamTellurium.Labyrinth
             this.Messages = new Messages();
             this.Scoreboard = new ScoreBoard();
             this.Score = 0;
+            this.HasGameQuit = false;
         }
 
         public void Run()
@@ -32,7 +29,8 @@ namespace TeamTellurium.Labyrinth
 
             while (!this.HasGameQuit)
             {
-                this.UserInput.ProcessInput();
+                string input = Console.ReadLine();
+                this.UserInput.ProcessInput(input);
 
                 RenderAll();
 
@@ -68,9 +66,14 @@ namespace TeamTellurium.Labyrinth
 
         public void ShowTopResults()
         {
-            Renderer.RenderScoreboard(this.Scoreboard.ShowScoreboard().ToString());
+            Renderer.RenderScoreboard(GetTopResults());
             Console.WriteLine("Press Any Key To Continue.");
             Console.ReadKey();
+        }
+
+        public string GetTopResults()
+        {
+            return this.Scoreboard.ShowScoreboard().ToString();
         }
 
         private void OnGameOver()

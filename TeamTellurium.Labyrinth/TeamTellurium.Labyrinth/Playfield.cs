@@ -19,10 +19,6 @@ namespace TeamTellurium.Labyrinth
 
         public Playfield(Position customStartPosition) : this()
         {
-            if (customStartPosition == null)
-            {
-                throw new NullReferenceException("Invalid position!" + customStartPosition.GetType().Name + " cannot be null");
-            }
             if (customStartPosition.Row >= labyrinthGridRows ||
                 customStartPosition.Col >= labyrinthGridCols)
             {
@@ -48,10 +44,6 @@ namespace TeamTellurium.Labyrinth
 
         public Playfield(int[,] customLabyrinth, Position customStartPosition) : this(customLabyrinth)
         {
-            if (customStartPosition == null)
-            {
-                throw new NullReferenceException("Invalid position! Must not be null.");
-            }
             if (customStartPosition.Row >= labyrinthGridRows || 
                 customStartPosition.Col >= labyrinthGridCols)
             {
