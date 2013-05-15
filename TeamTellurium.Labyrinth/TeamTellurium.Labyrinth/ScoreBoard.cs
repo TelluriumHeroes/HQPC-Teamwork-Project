@@ -8,7 +8,12 @@
 
     public class ScoreBoard
     {
-        private const string SCOREBOARD_PATH = "../../scoreboard.txt";
+        private readonly string scoreboardLocation = "../../scoreboard.txt";
+
+        public string GetScoreboardFileLocation()
+        {
+            return scoreboardLocation;
+        }
 
         public string ShowScoreboard()
         {
@@ -27,18 +32,13 @@
                 //Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
             }
 
-            return scoreboardResult.ToString();
+            string scoreboard = scoreboardResult.ToString();
+            return scoreboard;
         }
 
         public void AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
         {
-            SortedDictionary<string, int> playerNameAndScore = new SortedDictionary<string, int>();
-            playerNameAndScore.Add(playerName, playerScore);
-
-            foreach (KeyValuePair<string, int> topScorers in playerNameAndScore)
-            {
-                File.AppendAllText(SCOREBOARD_PATH, string.Format("{0} {1} {2}", topScorers.Key, topScorers.Value, Environment.NewLine));
-            }
+            File.AppendAllText(scoreboardLocation, string.Format("{0} {1} {2}", playerName, playerScore, Environment.NewLine));
         }
 
         private List<KeyValuePair<string, int>> ReadScoreboardFile()
@@ -74,7 +74,7 @@
 
         private FileInfo OpenScoreboardFile()
         {
-            FileInfo scoreBoardFile = new FileInfo(SCOREBOARD_PATH);
+            FileInfo scoreBoardFile = new FileInfo(scoreboardLocation);
             if (!scoreBoardFile.Exists)
             {
                 this.CreateScoreTextFile();
@@ -92,7 +92,7 @@
                 directory = directory.Substring(0, directory.LastIndexOf(@"\"));
             }
 
-            string fileName = SCOREBOARD_PATH.Substring(SCOREBOARD_PATH.LastIndexOf("/") + 1);
+            string fileName = scoreboardLocation.Substring(scoreboardLocation.LastIndexOf("/") + 1);
             string filePath = directory + @"\" + fileName;
 
             using (File.Create(filePath))
