@@ -52,7 +52,7 @@ namespace TeamTellurium.Labyrinth
         public void InitializeNewGame()
         {
             this.Score = 0;
-            Playfield.InitializeField();
+            this.Playfield.InitializeField();
             RenderAll();
         }
 

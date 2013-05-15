@@ -62,6 +62,10 @@ namespace TeamTellurium.Labyrinth
             this.PlayerPosition = customStartPosition;
         }
 
+        /// <summary>
+        /// Checks if current player position is at the end of the playfield
+        /// </summary>
+        /// <returns>A bool value with checked position</returns>
         public bool IsVictory()
         {
             return this.PlayerPosition.IsWinner();
@@ -69,6 +73,9 @@ namespace TeamTellurium.Labyrinth
 
         #region StartInitValues
 
+        /// <summary>
+        /// Initialize random playfield
+        /// </summary>
         public void InitializeField()
         {
             this.PlayerPosition.SetStartPosition();
@@ -79,7 +86,10 @@ namespace TeamTellurium.Labyrinth
             this.InitializeRandomValues();
         }
 
-        public void EnsureClearPath()
+        /// <summary>
+        /// Ensure clear escaping path from player start position
+        /// </summary>
+        private void EnsureClearPath()
         {
             Direction nextDirection = new Direction();
             Position currentPosition = new Position();
@@ -97,6 +107,9 @@ namespace TeamTellurium.Labyrinth
             }
         }
 
+        /// <summary>
+        /// Initialize random values between 0 and 1 in the playfield
+        /// </summary>
         private void InitializeRandomValues()
         {
             for (int row = 0; row < labyrinthGridRows; row++)
@@ -119,6 +132,9 @@ namespace TeamTellurium.Labyrinth
             }
         }
 
+        /// <summary>
+        /// Intialize 'empty' playfield with values equals to -1
+        /// </summary>
         private void IntializeEmptyField()
         {
             for (int row = 0; row < labyrinthGridRows; row++)

@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    public class Position
+    public class Position : IMovable
     {
         private const byte ROW_INITIAL_POSITION = 3;
         private const byte COL_INITIAL_POSITION = 3;

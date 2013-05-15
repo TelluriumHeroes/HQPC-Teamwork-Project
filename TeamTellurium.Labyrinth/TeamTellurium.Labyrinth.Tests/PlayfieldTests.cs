@@ -212,6 +212,27 @@ namespace TeamTellurium.Labyrinth.Tests
         }
 
         [TestMethod]
+        public void TestIsVictory_NotAVictory()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 0},
+                            {1, 1, 1, 1, 0, 0, 1},
+                            {0, 0, 0, 1, 0, 1, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 1, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+            Position customPosition = new Position(4, 2);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = false;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void TestIsVictory_SouthWestCornerExit()
         {
             int[,] labyrinthGrid = new int[7, 7]
@@ -236,10 +257,28 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestInitializeField_IsCorrectStartPosition()
         {
             Playfield playfield = new Playfield();
+            playfield.InitializeField();
+            
             Position expected = new Position(3, 3);
             Position actual = playfield.PlayerPosition;
             Assert.AreEqual(expected.Row, actual.Row);
             Assert.AreEqual(expected.Col, actual.Col);
+        }
+
+        [TestMethod]
+        public void TestInitializeField_IsClearPlayerPosition()
+        {
+            Playfield playfield = new Playfield();
+            playfield.InitializeField();
+
+            int expectedRow = 3;
+            int expectedCol = 3;
+            int actualRow = playfield.PlayerPosition.Row;
+            int actualCol = playfield.PlayerPosition.Col;
+
+            Position actual = playfield.PlayerPosition;
+            Assert.AreEqual(expectedRow, actualRow);
+            Assert.AreEqual(expectedCol, actualCol);
         }
 
 
