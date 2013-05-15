@@ -59,5 +59,54 @@ namespace TeamTellurium.Labyrinth.Tests
 
             Playfield playfield = new Playfield(labyrinthGrid);
         }
+
+        [TestMethod]
+        public void TestIsVictory_EastEndExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 1},
+                            {1, 1, 1, 1, 1, 1, 1},
+                            {0, 0, 0, 0, 0, 0, 0},
+                            {1, 0, 1, 0, 0, 0, 0},
+                            {0, 1, 0, 1, 0, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 0, 0, 0, 0, 0}
+                        };
+
+            Playfield playfield = new Playfield(labyrinthGrid);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_WestEndExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 1},
+                            {1, 1, 1, 1, 1, 1, 1},
+                            {0, 0, 0, 0, 1, 0, 0},
+                            {0, 0, 0, 0, 1, 0, 1},
+                            {0, 1, 0, 1, 0, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 0, 0, 0, 0, 0}
+                        };
+
+            Playfield playfield = new Playfield(labyrinthGrid);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
+            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
