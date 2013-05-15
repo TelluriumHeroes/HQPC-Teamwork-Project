@@ -11,9 +11,9 @@ namespace TeamTellurium.Labyrinth.Tests
         [TestMethod]
         public void TestShowScoreboard_WhenEmpty()
         {
-            ScoreBoard newScoreboard = new ScoreBoard();
-            File.Delete(newScoreboard.GetScoreboardFileLocation());
-            var actual = newScoreboard.ShowScoreboard();
+            ScoreBoard scoreboard = new ScoreBoard();
+            File.Delete(scoreboard.GetScoreboardFileLocation());
+            var actual = scoreboard.ShowScoreboard();
             string expected = "Scoreboard is empty. Congratulations, you will be the first who will play that game!";
 
             Assert.AreEqual(expected, actual);
@@ -22,14 +22,15 @@ namespace TeamTellurium.Labyrinth.Tests
         [TestMethod]
         public void TestAddPlayerInScoreboard_Add1Player()
         {
-            ScoreBoard newScoreboard = new ScoreBoard();
-            File.Delete(newScoreboard.GetScoreboardFileLocation());
+            ScoreBoard scoreboard = new ScoreBoard();
+            File.Delete(scoreboard.GetScoreboardFileLocation());
 
-            newScoreboard.AddPlayerInScoreboard("Plamen", 1);
+            scoreboard.AddPlayerInScoreboard("Plamen", 1);
             int playerPosition = 0;
+
             StringBuilder expectedScoreboard = new StringBuilder();
             expectedScoreboard.AppendFormat("{0}: {1} -> {2}", ++playerPosition, "Plamen", 1).AppendLine();
-            var actualScoreboard = newScoreboard.ShowScoreboard();
+            var actualScoreboard = scoreboard.ShowScoreboard();
 
             Assert.AreEqual(expectedScoreboard.ToString(), actualScoreboard);
         }
@@ -37,18 +38,29 @@ namespace TeamTellurium.Labyrinth.Tests
         [TestMethod]
         public void TestAddPlayerInScoreboard_Add2Players()
         {
-            ScoreBoard newScoreboard = new ScoreBoard();
-            File.Delete(newScoreboard.GetScoreboardFileLocation());
+            ScoreBoard scoreboard = new ScoreBoard();
+            File.Delete(scoreboard.GetScoreboardFileLocation());
 
-            newScoreboard.AddPlayerInScoreboard("Plamen", 1);
-            newScoreboard.AddPlayerInScoreboard("Ivo", 2);
+            scoreboard.AddPlayerInScoreboard("Plamen", 1);
+            scoreboard.AddPlayerInScoreboard("Ivo", 2);
             int playerPosition = 0;
+
             StringBuilder expectedScoreboard = new StringBuilder();
             expectedScoreboard.AppendFormat("{0}: {1} -> {2}", ++playerPosition, "Plamen", 1).AppendLine();
             expectedScoreboard.AppendFormat("{0}: {1} -> {2}", ++playerPosition, "Ivo", 2).AppendLine();
-            var actualScoreboard = newScoreboard.ShowScoreboard();
+            var actualScoreboard = scoreboard.ShowScoreboard();
 
             Assert.AreEqual(expectedScoreboard.ToString(), actualScoreboard);
+        }
+
+        [TestMethod]
+        public void TestGetScoreboardFileLocation()
+        {
+            ScoreBoard scoreboard = new ScoreBoard();
+            string scoreboardActualLocation = scoreboard.GetScoreboardFileLocation();
+            string scoreboardExpectedLocation = "../../scoreboard.txt";
+
+            Assert.AreEqual(scoreboardExpectedLocation, scoreboardActualLocation);
         }
     }
 }
