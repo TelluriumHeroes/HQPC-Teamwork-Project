@@ -74,10 +74,8 @@ namespace TeamTellurium.Labyrinth.Tests
                             {0, 0, 0, 0, 0, 0, 0}
                         };
 
-            Playfield playfield = new Playfield(labyrinthGrid);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Right);
+            Position customPosition = new Position(3, 6);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
             
             bool expected = true;
             bool actual = playfield.IsVictory();
@@ -98,15 +96,152 @@ namespace TeamTellurium.Labyrinth.Tests
                             {0, 0, 0, 0, 0, 0, 0}
                         };
 
-            Playfield playfield = new Playfield(labyrinthGrid);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
-            playfield.PlayerPosition.MoveAtDirection(Direction.Left);
+            Position customPosition = new Position(3, 0);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
 
             bool expected = true;
             bool actual = playfield.IsVictory();
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestIsVictory_NorthEndExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 0, 1, 1, 1},
+                            {1, 1, 1, 0, 1, 1, 1},
+                            {0, 0, 0, 0, 1, 0, 0},
+                            {1, 0, 1, 0, 1, 0, 1},
+                            {0, 1, 0, 1, 0, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 0, 0, 0, 0, 0}
+                        };
+
+            Position customPosition = new Position(0, 3);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_SouthEndExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 1},
+                            {1, 1, 1, 0, 1, 1, 1},
+                            {0, 0, 0, 1, 1, 0, 0},
+                            {1, 0, 1, 0, 1, 0, 1},
+                            {0, 1, 0, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+
+            Position customPosition = new Position(6, 3);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_NorthEastCornerExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 0},
+                            {1, 1, 1, 1, 0, 0, 1},
+                            {0, 0, 0, 1, 0, 1, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 1, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+            Position customPosition = new Position(0, 6);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_NorthWestCornerExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 0},
+                            {1, 1, 1, 1, 0, 0, 1},
+                            {0, 0, 0, 1, 0, 1, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 1, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+            Position customPosition = new Position(0, 6);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_SoutEastCornerExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 0},
+                            {1, 1, 1, 1, 0, 0, 1},
+                            {0, 0, 0, 1, 0, 1, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 1, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+            Position customPosition = new Position(6, 6);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestIsVictory_SouthWestCornerExit()
+        {
+            int[,] labyrinthGrid = new int[7, 7]
+                        {
+                            {0, 0, 1, 1, 1, 1, 0},
+                            {1, 1, 1, 1, 0, 0, 1},
+                            {0, 0, 0, 1, 0, 1, 0},
+                            {1, 0, 1, 0, 0, 1, 1},
+                            {0, 1, 0, 1, 1, 0, 0},
+                            {0, 0, 1, 0, 0, 0, 0},
+                            {0, 0, 1, 0, 1, 0, 0}
+                        };
+            Position customPosition = new Position(6, 0);
+            Playfield playfield = new Playfield(labyrinthGrid, customPosition);
+
+            bool expected = true;
+            bool actual = playfield.IsVictory();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestInitializeField_IsCorrectStartPosition()
+        {
+            Playfield playfield = new Playfield();
+            Position expected = new Position(3, 3);
+            Position actual = playfield.PlayerPosition;
+            Assert.AreEqual(expected.Row, actual.Row);
+            Assert.AreEqual(expected.Col, actual.Col);
+        }
+
 
     }
 }

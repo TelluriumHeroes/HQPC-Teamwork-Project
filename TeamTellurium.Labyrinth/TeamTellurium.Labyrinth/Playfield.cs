@@ -17,6 +17,22 @@ namespace TeamTellurium.Labyrinth
             this.PlayerPosition = new Position();
         }
 
+        public Playfield(Position customStartPosition) : this()
+        {
+            if (customStartPosition == null)
+            {
+                throw new NullReferenceException("Invalid position!" + customStartPosition.GetType().Name + " cannot be null");
+            }
+            if (customStartPosition.Row >= labyrinthGridRows ||
+                customStartPosition.Col >= labyrinthGridCols)
+            {
+                throw new IndexOutOfRangeException(
+                   String.Format("The numbers of the custom position rows and cols must not be bigger than rows = {0} and cols = {1}! Your input: row = {0} and col = {1}",
+                           Playfield.labyrinthGridRows, Playfield.labyrinthGridCols, customStartPosition.Row, customStartPosition.Col));
+            }
+            this.PlayerPosition = customStartPosition;
+        }
+
         public Playfield(int[,] customLabyrinth)
         {
             if (customLabyrinth.GetLength(0) != labyrinthGridRows ||
@@ -28,6 +44,22 @@ namespace TeamTellurium.Labyrinth
             }
             this.LabyrinthGrid = customLabyrinth;
             this.PlayerPosition = new Position();
+        }
+
+        public Playfield(int[,] customLabyrinth, Position customStartPosition) : this(customLabyrinth)
+        {
+            if (customStartPosition == null)
+            {
+                throw new NullReferenceException("Invalid position! Must not be null.");
+            }
+            if (customStartPosition.Row >= labyrinthGridRows || 
+                customStartPosition.Col >= labyrinthGridCols)
+            {
+                throw new IndexOutOfRangeException(
+                   String.Format("The numbers of the custom position rows and cols must not be bigger than rows = {0} and cols = {1}! Your input: row = {0} and col = {1}",
+                           Playfield.labyrinthGridRows, Playfield.labyrinthGridCols, customStartPosition.Row, customStartPosition.Col));
+            }
+            this.PlayerPosition = customStartPosition;
         }
 
         public bool IsVictory()
@@ -42,7 +74,7 @@ namespace TeamTellurium.Labyrinth
             this.PlayerPosition.SetStartPosition();
             this.IntializeEmptyField();
             //Player initial position
-            this.LabyrinthGrid[3, 3] = 0;
+            this.LabyrinthGrid[PlayerPosition.Row, PlayerPosition.Col] = 0;
             this.EnsureClearPath();
             this.InitializeRandomValues();
         }

@@ -10,7 +10,7 @@ namespace TeamTellurium.Labyrinth.Tests
         public void TestShowScoreboard_WhenEmpty()
         {
             ScoreBoard scoreboard = new ScoreBoard();
-            string actualScoreboard = scoreboard.ShowScoreboard().ToString();
+            string actualScoreboard = scoreboard.ShowScoreboard();
             
             string expectedScoreboard = "Scoreboard is empty. Congratulations, you will be the first who will play that game!";
 
@@ -23,6 +23,7 @@ namespace TeamTellurium.Labyrinth.Tests
             ScoreBoard scoreboard = new ScoreBoard();
             scoreboard.AddPlayerInScoreboard("Plamen", 3);
             bool isTrueThatOnePlayerIsAdded = scoreboard.ShowScoreboard().Length == 1;
+            var a = scoreboard.ShowScoreboard().Length;
 
             foreach (var item in scoreboard.ShowScoreboard())
             {

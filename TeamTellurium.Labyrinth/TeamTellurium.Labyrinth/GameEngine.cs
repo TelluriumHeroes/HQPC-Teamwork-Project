@@ -73,6 +73,20 @@ namespace TeamTellurium.Labyrinth
             Console.ReadKey();
         }
 
+        private void OnGameOver()
+        {
+            string name;
+            do
+            {
+                Renderer.RenderWinInfo(this.Messages.WinnerCongratsMessage(this.Score));
+                name = Console.ReadLine();
+            }
+            while (string.IsNullOrEmpty(name));
+
+            this.Scoreboard.AddPlayerInScoreboard(name, this.Score);
+            this.InitializeNewGame();
+        }
+
         public void MoveAtDirection(Direction direction, Action MovementAction)
         {
             if (MovesChecker.IsValidMove(Playfield, direction))
@@ -110,21 +124,6 @@ namespace TeamTellurium.Labyrinth
         public void QuitGame()
         {
             this.HasGameQuit = true;
-        }
-
-        private void OnGameOver()
-        {
-            string name;
-            do
-            {   
-                Renderer.RenderWinInfo(this.Messages.WinnerCongratsMessage(this.Score));
-                name = Console.ReadLine();
-            }
-            while (string.IsNullOrEmpty(name));
-            this.Scoreboard.AddPlayerInScoreboard(name, this.Score);
-
-            this.Messages.NewLine();
-            this.InitializeNewGame();
         }
     }
 }
