@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+
     public interface IConsoleInput
     {
         event EventHandler OnWriteL;

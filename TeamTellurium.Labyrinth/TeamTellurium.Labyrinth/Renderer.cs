@@ -1,8 +1,8 @@
-﻿using System;
-using System.Text;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+    using System.Text;
+
     public static class Renderer
     {
         public static string RenderField(int[,] gamefieldGrid, int currentPosRow, int currentPosCol)
@@ -26,7 +26,7 @@ namespace TeamTellurium.Labyrinth
                         {
                             fieldAsString.Append("-");
                         }
-                        else //if (labyrinthGrid[row, col] == 1)
+                        else
                         {
                             fieldAsString.Append("X");
                         }
@@ -40,7 +40,6 @@ namespace TeamTellurium.Labyrinth
             Console.WriteLine(fieldAsString.ToString());
             Console.SetCursorPosition(49, 11);
 
-            //For testing purpose only
             return fieldAsString.ToString();
         }
 

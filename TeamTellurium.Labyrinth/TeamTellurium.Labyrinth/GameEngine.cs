@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+    using System.Threading;
+
     public class GameEngine
     {
         public ConsoleInput UserInput { get; private set; }

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿namespace TeamTellurium.Labyrinth
+{
+    using System;
+    using System.Linq;
 
-namespace TeamTellurium.Labyrinth
-{   
     public class LabyrinthMain
     {
         public static void Main(string[] args)

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace TeamTellurium.Labyrinth
+﻿namespace TeamTellurium.Labyrinth
 {
+    using System;
+
     public class Playfield
     {
         private static readonly Random randomNumberGenerator = new Random();
@@ -72,7 +72,6 @@ namespace TeamTellurium.Labyrinth
         {
             this.PlayerPosition.SetStartPosition();
             this.IntializeEmptyField();
-            //Player initial position
             this.LabyrinthGrid[PlayerPosition.Row, PlayerPosition.Col] = 0;
             this.EnsureClearPath();
             this.InitializeRandomValues();

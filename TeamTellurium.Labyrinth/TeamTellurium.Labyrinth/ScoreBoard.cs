@@ -26,29 +26,28 @@
                 scoreboardResult.AppendFormat("{0}: {1} -> {2}", ++playerPosition, result.Key, result.Value).AppendLine();
             }
 
-            if (scoreboardResult.ToString() == string.Empty) //if (isEmpty) Console.WriteLine("Scoreboard is empty.");
+            if (scoreboardResult.ToString() == string.Empty)
             {
                 scoreboardResult.AppendFormat("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
-                //Console.WriteLine("Scoreboard is empty. Congratulations, you will be the first who will play that game!");
             }
 
             string scoreboard = scoreboardResult.ToString();
             return scoreboard;
         }
 
-        public void AddPlayerInScoreboard(string playerName, int playerScore) //public void add(string name, int score)
+        public void AddPlayerInScoreboard(string playerName, int playerScore)
         {
             File.AppendAllText(scoreboardLocation, string.Format("{0} {1} {2}", playerName, playerScore, Environment.NewLine));
         }
 
         private List<KeyValuePair<string, int>> ReadScoreboardFile()
         {
-            FileInfo currentScoreboard = this.OpenScoreboardFile(); //FileInfo file = OpenFile();
+            FileInfo currentScoreboard = this.OpenScoreboardFile();
             var scoreboard = new List<KeyValuePair<string, int>>();
 
             using (StreamReader scoreboardList = currentScoreboard.OpenText())
             {
-                string currentLine = null; //string line = null;
+                string currentLine = null;
                 int nameIndex = 0;
                 int scoreIndex = 1;
 
