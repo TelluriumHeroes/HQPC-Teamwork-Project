@@ -18,7 +18,7 @@
 
         public string WelcomeMessage()
         {
-            string welcomeMessage = "Welcome to \"Labyrinth\" game. Please try to escape. Use 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.";
+            string welcomeMessage = "Welcome to \"Labyrinth\" game.\r\nPlease try to escape.\r\nUse 'top' to view the top scoreboard, 'restart' to start a new game and 'exit' to quit the game.";
             return welcomeMessage;
         }
 

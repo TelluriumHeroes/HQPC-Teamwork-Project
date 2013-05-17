@@ -88,13 +88,20 @@
 
         public bool IsWinner()
         {
-            if (this.row == TOP_ESCAPE_POSITION || this.row == BOTTOM_ESCAPE_POSITION
-                || this.col == LEFT_ESCAPE_POSITION || this.col == RIGTH_ESCAPE_POSITION)
+            if (HasPlayerEscaped())
             {
                 return true;
             }
 
             return false;
+        }
+
+        private bool HasPlayerEscaped()
+        {
+            bool verticalEscape = (this.row == TOP_ESCAPE_POSITION || this.row == BOTTOM_ESCAPE_POSITION);
+            bool horizontalEscape = ( this.col == LEFT_ESCAPE_POSITION || this.col == RIGTH_ESCAPE_POSITION);
+
+            return verticalEscape || horizontalEscape;
         }
 
         public void SetStartPosition()
